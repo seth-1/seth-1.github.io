@@ -1,1 +1,15 @@
 theme: jekyll-theme-cayman
+
+
+
+# --- Navigation bar options --- #
+
+# List of links in the navigation bar
+navbar-links:
+  About Me: "aboutme"
+  Resources:
+    - Installing Rstudio: "http://deanattali.com/beautiful-jekyll/"
+    - R tutorials: "http://www.markdowntutorial.com/"
+
+exclude:
+  - README.md
