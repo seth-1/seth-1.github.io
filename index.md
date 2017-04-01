@@ -4,4 +4,4 @@ Install Rstudio from the following [site](https://www.rstudio.com/) choose your 
 
 # Working in Rstudio
 
-[working window](figures/intro.gif)
+![working window](figures/intro.gif)
