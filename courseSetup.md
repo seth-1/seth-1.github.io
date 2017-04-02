@@ -1,5 +1,5 @@
 ---
-title: Getting started with R
+page.title: Getting started with R
 ---
 
 
