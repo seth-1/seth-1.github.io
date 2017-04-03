@@ -1,7 +1,7 @@
 ---
-title: "Getting started with R"
+layout: default
+title: Getting started with R
 ---
-
 
 # Installing Rstudio
 
