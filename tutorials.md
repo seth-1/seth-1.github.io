@@ -20,6 +20,8 @@ R's favorite data structure is the data frame which is a table containing differ
 
 > This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
+## Data Overview
+
 ```r
 > head(iris)
   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -41,6 +43,17 @@ R's favorite data structure is the data frame which is a table containing differ
 
 Quick recap of plant biology:
 ![orchid flower anatomy](https://upload.wikimedia.org/wikipedia/commons/8/80/VanillaFlowerLongitudinalSection-en.png)
+
+## Subsetting
+
+Data frames and other types of data can be subsetted to concentrate on certain groups of organisms, enzymes etc.
+
+```r
+iris[iris$species == 'setosa',]
+```
+
+Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame ```iris[rows,columns]``` and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of ```iris$species``` if they are containing the term ```'setosa'```. Remember that single ```=``` will mean an assignment operation like in ```a = 1``` and only double equation marks ```==``` will create a comparison.
+
 
 
 ## ggplot2 basics
