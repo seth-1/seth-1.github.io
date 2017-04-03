@@ -15,9 +15,9 @@
     <section class="page-header">
   <h1 class="project-name">Biosynthesis of natural products</h1>
   <h2 class="project-tagline">Tutorials for the fungal project</h2>
-  <a href="courseSetup.html" class="btn">Getting started</a>
-  <a href="#" class="btn">Tutorials</a>
-  <!-- <a href="#" class="btn">Download .tar.gz</a> -->
+  <a href="gettingStarted.html" class="btn">Getting started</a>
+  <a href="tutorials.html" class="btn">Tutorials</a>
+  <a href="supplementary.html" class="btn">Supplementary</a>
 </section>
 
 
@@ -27,31 +27,39 @@
 
 <p>Install Rstudio from the following <a href="https://www.rstudio.com/products/RStudio/">site</a> choose your system and follow the instructions.</p>
 
-<h1 id="working-in-rstudio">Working in Rstudio</h1>
+<h2 id="working-in-rstudio">Working in Rstudio</h2>
+
+<p>Rstudio is an integrated development environment (IDE), meaning it provides you with an interface to write your script, execute it, inspect your workspace (data loaded in memory) and manage packages.</p>
+
+<p>When typing into the script, Rstudio will suggest you functions that match the word you are typing. To autocomplete, select the right function with the arrow keys and press the tab or enter key. Once you are finished with a line of code, you can execute it by <em>ctrl + enter</em> (<em>cmd + enter</em> for Mac). Select blocks of code with the mouse and hit <em>ctrl + enter</em> to execute a whole code block.</p>
 
 <p><img src="figures/intro.gif" alt="working window" /></p>
 
-<h1 id="interpro">Interpro</h1>
+<h2 id="installing-packages">Installing packages</h2>
 
-<p>We will use <a href="https://www.ebi.ac.uk/interpro/">interpro</a> predictions in our analysis. The analysis has already been performed for you, however you should inspect the website and</p>
-<blockquote>
-  <p>InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro’s signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium.</p>
-</blockquote>
+<p>Packages are collections of functions that help you in your work. The R community has developed a vast amount of helpful packages which can be downloaded from inside Rstudio. To install a package, select the <em>Packages</em> tab, click <em>Install</em> and type in the package you need.</p>
 
-<p>The EMBL-EBI provides a <a href="https://www.ebi.ac.uk/interpro/search/sequence-search">web server</a> where you are able to run your own protein sequences using fasta files. For multiple proteins a <a href="https://www.ebi.ac.uk/interpro/interproscan.html">stand alone</a> copy of interproscan 5 on a multi core machine is recommended.</p>
+<p>Before using functions of a package you have to load it. Either select the package under the <em>Packages</em> tab or write <code class="highlighter-rouge">library(packageName)</code> in your script and execute the line.</p>
 
-<p>You can try out interpro by scanning their <strong>Example protein sequence</strong> (only one query per group). The output we will be using will be the same, just in a tab separated value (tsv) file instead of an html/XML file.</p>
+<p><img src="figures/installPackages.gif" alt="installing packages" /></p>
 
-<p>Questions:</p>
+<h3 id="before-starting-the-course-you-should-have-the-following-packages-installed">Before starting the course you should have the following packages installed:</h3>
 
 <ul>
-  <li>What is special about their output?</li>
-  <li>Is it only one model?</li>
-  <li>Pick one domain and inspect what their model is based on</li>
+  <li>ggplot2</li>
+  <li>reshape2</li>
+  <li>ape</li>
+  <li>RColorBrewer</li>
 </ul>
 
+<h2 id="how-to-get-help">How to get help</h2>
 
-<nav class="nav-primary" role="navigation" >
+<p>The documentation on R functions are a good starting point. You can either access the <em>Help</em> tab on the bottom right window or type <code class="highlighter-rouge">?function</code> in your script and execute it.</p>
+
+<p><img src="figures/Rhelp.gif" alt="Accessing R help" /></p>
+
+
+<!-- <nav class="nav-primary" role="navigation" >
     <ul>
         
         <li>
@@ -60,6 +68,10 @@
         
         <li>
         	<a  href="/">{}</a>
+        </li>
+        
+        <li>
+        	<a  href="/supplementary.html">Supplementary info</a>
         </li>
         
         <li>
@@ -72,7 +84,7 @@
         
     </ul>
 </nav>
-
+ -->
 
       <footer class="site-footer">
   <span class="site-footer-owner"><a href="http://localhost:4000">Biosynthesis of natural products</a> is maintained by <a href="seth-1.github.io">Sebastian Theobald</a>.</span>

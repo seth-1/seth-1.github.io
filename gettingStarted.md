@@ -7,24 +7,33 @@ title: Getting started with R
 
 Install Rstudio from the following [site](https://www.rstudio.com/products/RStudio/) choose your system and follow the instructions.
 
-# Working in Rstudio
+## Working in Rstudio
+
+Rstudio is an integrated development environment (IDE), meaning it provides you with an interface to write your script, execute it, inspect your workspace (data loaded in memory) and manage packages.
+
+When typing into the script, Rstudio will suggest you functions that match the word you are typing. To autocomplete, select the right function with the arrow keys and press the tab or enter key. Once you are finished with a line of code, you can execute it by *ctrl + enter* (*cmd + enter* for Mac). Select blocks of code with the mouse and hit *ctrl + enter* to execute a whole code block.
 
 ![working window](figures/intro.gif)
 
 
-# Interpro
+## Installing packages
 
-We will use [interpro](https://www.ebi.ac.uk/interpro/) predictions in our analysis. The analysis has already been performed for you, however you should inspect the website and
-> InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro's signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium.
+Packages are collections of functions that help you in your work. The R community has developed a vast amount of helpful packages which can be downloaded from inside Rstudio. To install a package, select the *Packages* tab, click *Install* and type in the package you need.
 
-The EMBL-EBI provides a [web server](https://www.ebi.ac.uk/interpro/search/sequence-search) where you are able to run your own protein sequences using fasta files. For multiple proteins a [stand alone](https://www.ebi.ac.uk/interpro/interproscan.html) copy of interproscan 5 on a multi core machine is recommended.
+Before using functions of a package you have to load it. Either select the package under the *Packages* tab or write ```library(packageName)``` in your script and execute the line.
 
-You can try out interpro by scanning their **Example protein sequence** (only one query per group). The output we will be using will be the same, just in a tab separated value (tsv) file instead of an html/XML file.
+![installing packages](figures/installPackages.gif)  
+
+### Before starting the course you should have the following packages installed:
+
+* ggplot2
+* reshape2
+* ape
+* RColorBrewer
 
 
+## How to get help
 
-Questions:
+The documentation on R functions are a good starting point. You can either access the *Help* tab on the bottom right window or type ```?function``` in your script and execute it.
 
-* What is special about their output?
-* Is it only one model?
-* Pick one domain and inspect what their model is based on
+![Accessing R help](figures/Rhelp.gif)

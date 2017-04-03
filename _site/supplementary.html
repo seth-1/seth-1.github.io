@@ -23,16 +23,25 @@
 
     <section class="main-content">
 
-      <div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    
-      <li><span>03 Apr 2017</span> &raquo; <a href="/main/2017/04/03/installingRstudio.html">Creating a project site with Jekyll!</a></li>
-    
-      <li><span>12 Feb 2016</span> &raquo; <a href="/main/2016/02/12/sample-content.html">Welcome to Jekyll!</a></li>
-    
-  </ul>
-</div>
+      <h1 id="interpro">Interpro</h1>
+
+<p>We will use <a href="https://www.ebi.ac.uk/interpro/">interpro</a> predictions in our analysis. The analysis has already been performed for you, however you should inspect the website and</p>
+<blockquote>
+  <p>InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro’s signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium.</p>
+</blockquote>
+
+<p>The EMBL-EBI provides a <a href="https://www.ebi.ac.uk/interpro/search/sequence-search">web server</a> where you are able to run your own protein sequences using fasta files. For multiple proteins a <a href="https://www.ebi.ac.uk/interpro/interproscan.html">stand alone</a> copy of interproscan 5 on a multi core machine is recommended.</p>
+
+<p>You can try out interpro by scanning their <strong>Example protein sequence</strong> (only one query per group). The output we will be using will be the same, just in a tab separated value (tsv) file instead of an html/XML file.</p>
+
+<p>Questions:</p>
+
+<ul>
+  <li>What is special about their output?</li>
+  <li>Is it only one model?</li>
+  <li>Pick one domain and inspect what their model is based on</li>
+</ul>
+
 
 <!-- <nav class="nav-primary" role="navigation" >
     <ul>
@@ -42,11 +51,11 @@
         </li>
         
         <li>
-        	<a class="active" href="/">{}</a>
+        	<a  href="/">{}</a>
         </li>
         
         <li>
-        	<a  href="/supplementary.html">Supplementary info</a>
+        	<a class="active" href="/supplementary.html">Supplementary info</a>
         </li>
         
         <li>

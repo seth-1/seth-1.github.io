@@ -15,9 +15,9 @@
     <section class="page-header">
   <h1 class="project-name">Biosynthesis of natural products</h1>
   <h2 class="project-tagline">Tutorials for the fungal project</h2>
-  <a href="courseSetup.html" class="btn">Getting started</a>
-  <a href="#" class="btn">Tutorials</a>
-  <!-- <a href="#" class="btn">Download .tar.gz</a> -->
+  <a href="gettingStarted.html" class="btn">Getting started</a>
+  <a href="tutorials.html" class="btn">Tutorials</a>
+  <a href="supplementary.html" class="btn">Supplementary</a>
 </section>
 
 
@@ -27,11 +27,53 @@
 
 <p>Antismash is already providing many functions and analysis tools in it’s web interface. However, projects often involve newly sequenced organisms that are not available in public databases yet and only owned by you. Therefore, you have to perform certain analyses on your own, including unpublished and non analysed data.</p>
 
-<p>Learning R will also help you in handling the increasing  amount of data we are confronted with. Projects that work on 100 to 300 genomes at the same time are common and certain projects combine analyses of <a href="http://genome.jgi.doe.gov/programs/fungi/1000fungalgenomes.jsf">1000 genomes</a>.</p>
+<p>Learning R will help you in handling the increasing  amount of data. Projects working on 100 to 300 genomes simultaneously are common and certain projects combine analyses of <a href="http://genome.jgi.doe.gov/programs/fungi/1000fungalgenomes.jsf">1000 genomes</a>.</p>
 
 <p><img src="https://cdn.meme.am/cache/instances/folder204/65722204.jpg" alt="all genomes" /></p>
 
-<p>So more data will become available and it will become increasingly important to work on these in a high throughput as well as reproducible manner.</p>
+<p>More data will become available and it will become increasingly important to work on these in a high throughput as well as reproducible manner.</p>
+
+<h1 id="working-with-r">Working with R</h1>
+
+<p>R’s favorite data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.</p>
+
+<blockquote>
+  <p>This famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+  </span><span class="n">Sepal.Length</span><span class="w"> </span><span class="n">Sepal.Width</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="n">Species</span><span class="w">
+</span><span class="m">1</span><span class="w">          </span><span class="m">5.1</span><span class="w">         </span><span class="m">3.5</span><span class="w">          </span><span class="m">1.4</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+</span><span class="m">2</span><span class="w">          </span><span class="m">4.9</span><span class="w">         </span><span class="m">3.0</span><span class="w">          </span><span class="m">1.4</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+</span><span class="m">3</span><span class="w">          </span><span class="m">4.7</span><span class="w">         </span><span class="m">3.2</span><span class="w">          </span><span class="m">1.3</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+</span><span class="m">4</span><span class="w">          </span><span class="m">4.6</span><span class="w">         </span><span class="m">3.1</span><span class="w">          </span><span class="m">1.5</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+</span><span class="m">5</span><span class="w">          </span><span class="m">5.0</span><span class="w">         </span><span class="m">3.6</span><span class="w">          </span><span class="m">1.4</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+</span><span class="m">6</span><span class="w">          </span><span class="m">5.4</span><span class="w">         </span><span class="m">3.9</span><span class="w">          </span><span class="m">1.7</span><span class="w">         </span><span class="m">0.4</span><span class="w">  </span><span class="n">setosa</span><span class="w">
+
+</span><span class="o">&gt;</span><span class="w"> </span><span class="n">str</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+</span><span class="s1">'data.frame'</span><span class="o">:</span><span class="w">	</span><span class="m">150</span><span class="w"> </span><span class="n">obs.</span><span class="w"> </span><span class="n">of</span><span class="w">  </span><span class="m">5</span><span class="w"> </span><span class="n">variables</span><span class="o">:</span><span class="w">
+ </span><span class="o">$</span><span class="w"> </span><span class="n">Sepal.Length</span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">5.1</span><span class="w"> </span><span class="m">4.9</span><span class="w"> </span><span class="m">4.7</span><span class="w"> </span><span class="m">4.6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5.4</span><span class="w"> </span><span class="m">4.6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4.4</span><span class="w"> </span><span class="m">4.9</span><span class="w"> </span><span class="n">...</span><span class="w">
+ </span><span class="o">$</span><span class="w"> </span><span class="n">Sepal.Width</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">3.5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3.2</span><span class="w"> </span><span class="m">3.1</span><span class="w"> </span><span class="m">3.6</span><span class="w"> </span><span class="m">3.9</span><span class="w"> </span><span class="m">3.4</span><span class="w"> </span><span class="m">3.4</span><span class="w"> </span><span class="m">2.9</span><span class="w"> </span><span class="m">3.1</span><span class="w"> </span><span class="n">...</span><span class="w">
+ </span><span class="o">$</span><span class="w"> </span><span class="n">Petal.Length</span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.3</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.7</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="n">...</span><span class="w">
+ </span><span class="o">$</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.4</span><span class="w"> </span><span class="m">0.3</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.1</span><span class="w"> </span><span class="n">...</span><span class="w">
+ </span><span class="o">$</span><span class="w"> </span><span class="n">Species</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="n">Factor</span><span class="w"> </span><span class="n">w</span><span class="o">/</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="s2">"setosa"</span><span class="p">,</span><span class="s2">"versicolor"</span><span class="p">,</span><span class="n">..</span><span class="o">:</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">...</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Quick recap of plant biology:
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/80/VanillaFlowerLongitudinalSection-en.png" alt="orchid flower anatomy" /></p>
+
+<h2 id="ggplot2-basics">ggplot2 basics</h2>
+
+<p>ggplot2 requires your dataframe in the first argument <code class="highlighter-rouge">ggplot(yourDataFrame)</code> afterwards you specify the type of plot like e.g. <code class="highlighter-rouge">geom_point()</code> and set the aesthetic mapping inside the latter function. Aesthetics tell ggplot the variables for each axis <code class="highlighter-rouge">x,y</code> and the groups you want to specify by <code class="highlighter-rouge">color</code>.
+In the follwing example we use the standard R iris dataset and plot length of petals against length of sepals.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Species</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+<p><img src="figures/ggplotExample.png" alt="ggplotBasics" /></p>
+
+<p>A more detailed introduction to R can be found on another <a href="https://cmgbiotech.wordpress.com/tutorials/introduction-to-r/">course page</a></p>
 
 <h1 id="data">Data</h1>
 
@@ -45,10 +87,10 @@
 </span></code></pre>
 </div>
 
-<h1 id="working-with-r">Working with R</h1>
+<h1 id="tutorial-2-creating-summary-plots-with-r">Tutorial 2: Creating summary plots with R</h1>
 
 
-<nav class="nav-primary" role="navigation" >
+<!-- <nav class="nav-primary" role="navigation" >
     <ul>
         
         <li>
@@ -57,6 +99,10 @@
         
         <li>
         	<a  href="/">{}</a>
+        </li>
+        
+        <li>
+        	<a  href="/supplementary.html">Supplementary info</a>
         </li>
         
         <li>
@@ -69,7 +115,7 @@
         
     </ul>
 </nav>
-
+ -->
 
       <footer class="site-footer">
   <span class="site-footer-owner"><a href="http://localhost:4000">Biosynthesis of natural products</a> is maintained by <a href="seth-1.github.io">Sebastian Theobald</a>.</span>
