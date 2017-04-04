@@ -37,7 +37,7 @@ Create a combination of your secondary metabolite annotations and interpro annot
 ### Case 1 PKS
 
 <div class = "spec-hi" >
-Trying without paragraph
+<p>Trying without paragraph</p>
 </div>
 <!-- If the latter crashes use or looks weird use a paragraph element inside the div -->
 
