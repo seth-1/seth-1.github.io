@@ -24,6 +24,7 @@ Create an overview of the secondary metabolism for all organisms.
 * Choose an appropriate visualization for your data
 * Why did you choose a certain geom for your plot?
 * What does the plot tell you about secondary metabolism in the 4 species
+* Write a function that shows you the results in a table
 
 ## Combining the sets
 
@@ -35,6 +36,12 @@ Create a combination of your secondary metabolite annotations and interpro annot
 
 ### Case 1 PKS
 
+<div class = "spec-hi" >
+Trying without paragraph
+</div>
+<!-- If the latter crashes use or looks weird use a paragraph element inside the div -->
+
+
 * What are regular domains inside PKSs?
 * What are domains with special functions?
 * Using subsetting, find all PKSs that contain a Methyltransferase.
@@ -42,3 +49,17 @@ Create a combination of your secondary metabolite annotations and interpro annot
 * Repeat the last two steps for another domains with special function inside PKSs.
 
 ## Similarity of clusters
+
+### Introduction to lapply and sapply
+
+The apply family of functions working similar to for-loops, meaning:
+
+```r
+for(element in l){
+  length(element)
+}
+
+lapply(l, length) # Is basically the same as above.
+```
+
+ ```lapply``` will retain the list structure while ```sapply``` is simplifying the result to a vector.
