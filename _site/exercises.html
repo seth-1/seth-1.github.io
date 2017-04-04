@@ -24,31 +24,35 @@
 
     <section class="main-content">
 
-      <h1 id="interpro">Interpro</h1>
+      <h1 id="introduction">Introduction</h1>
 
-<p>We will use <a href="https://www.ebi.ac.uk/interpro/">interpro</a> predictions in our analysis. The analysis has already been performed for you, however you should inspect the website and</p>
-<blockquote>
-  <p>InterProScan is the software package that allows sequences (protein and nucleic) to be scanned against InterPro’s signatures. Signatures are predictive models, provided by several different databases, that make up the InterPro consortium.</p>
-</blockquote>
+<p>We will use antismash outputs of 4 Aspergillus genomes to mine them for secondary metabolic gene clusters. Using R we will develop a high throughput method which helps us to compare multiple datasets containing large amounts of data and mining for natural products of interest.</p>
 
-<p>The EMBL-EBI provides a <a href="https://www.ebi.ac.uk/interpro/search/sequence-search">web server</a> where you are able to run your own protein sequences using fasta files. For multiple proteins a <a href="https://www.ebi.ac.uk/interpro/interproscan.html">stand alone</a> copy of interproscan 5 on a multi core machine is recommended.</p>
-
-<p>You can try out interpro by scanning their <strong>Example protein sequence</strong> (only one query per group). The output we will be using will be the same, just in a tab separated value (tsv) file instead of an html/XML file.</p>
-
-<p>Questions:</p>
+<h2 id="input">Input</h2>
 
 <ul>
-  <li>What is special about their output?</li>
-  <li>Is it only one model?</li>
-  <li>Pick one domain and inspect what their model is based on</li>
+  <li>Load the file sm_annotation.tsv into R</li>
+  <li>Inspect your data, what are the variables?</li>
 </ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Create an overview of the secondary metabolism for all organisms.</p>
+
+<ul>
+  <li>Choose an appropriate visualization for your data</li>
+  <li>Why did you choose a certain geom for your plot?</li>
+  <li>What does the plot tell you about secondary metabolism in the 4 species</li>
+</ul>
+
+<p>##</p>
 
 
 <!-- <nav class="nav-primary" role="navigation" >
     <ul>
         
         <li>
-        	<a  href="/exercises.html">Exercises</a>
+        	<a class="active" href="/exercises.html">Exercises</a>
         </li>
         
         <li>
@@ -60,7 +64,7 @@
         </li>
         
         <li>
-        	<a class="active" href="/supplementary.html">Supplementary info</a>
+        	<a  href="/supplementary.html">Supplementary info</a>
         </li>
         
         <li>

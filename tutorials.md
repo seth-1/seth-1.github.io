@@ -16,6 +16,32 @@ More data will become available and it will become increasingly important to wor
 
 # Working with R
 
+## R basics
+
+R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. ```c()``` in the example below is a function which *concatenates* the numeric values *1,2,3,4,5* to a numeric vector.
+
+```
+a <- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
+a <- seq(5)       # does the same as the line above using the seq function
+sum(a)            # calculates the sum of a
+class(a)
+
+
+letters           # built in letters
+class(letters)
+b <- letters[1:20] # subsetting for first to 20th character
+c <- letters[10:20]
+d <- letters[15:25]
+union(b,c,d)
+
+```
+
+* How does the ```union()``` function differ from the ```c()``` function?
+* How can you find the shared characters between b and c? Tip: Try the help function on ```union()```
+
+
+## Data frames and built in datasets
+
 R's favorite data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.
 
 > This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
@@ -66,13 +92,28 @@ ggplot(iris)+ geom_point(aes(x = Sepal.Length, y = Petal.Length, color = Species
 ```
 ![ggplotBasics](figures/ggplotExample.png)
 
+### Using more geoms
+
+Geoms are the types of plots you can create with ggplot2. Try typing ```geom_``` in Rstudio and see what Rstudio suggests to you.
+
+One useful geom is the histogram ```geom_histogram```. This time we specify *fill* to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the ```factor()``` function to create groups of data from numeric data. Try ```mtcars$gear``` vs ```factor(mtcars$gear)```, what is the difference?
+
+```r
+head(mtcars)
+
+ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge')
+```
+
+![carsHistogram](figures/carsHistoDodged.png)
+
+
+
+# More info on R
 
 A more detailed introduction to R can be found on another [course page](https://cmgbiotech.wordpress.com/tutorials/introduction-to-r/)
 
 
-# Data
 
-We will use antismash outputs of 4 Aspergillus genomes to mine them for secondary metabolic gene clusters. Using R we will develop a high throughput method which helps us to compare multiple datasets containing large amounts of data and mining for natural products of interest.
 
 ## Reading data into R
 
@@ -81,7 +122,3 @@ dat <- read.table("example.tsv", sep = '\t') # Reading example file
 head(dat)                                    # Showing the header
 str(dat)                                     # Overview of observations (rows) and variables (columns)
 ```
-
-
-
-# Tutorial 2: Creating summary plots with R
