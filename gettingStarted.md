@@ -30,6 +30,7 @@ Before using functions of a package you have to load it. Either select the packa
 * reshape2
 * ape
 * RColorBrewer
+* gplots
 
 
 ## How to get help

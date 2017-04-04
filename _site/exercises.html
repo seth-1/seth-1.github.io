@@ -30,6 +30,11 @@
 
 <h2 id="input">Input</h2>
 
+<p>To tell Rstudio where you want to work copy the file path like below and execute it in Rstudio</p>
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"path/to/directory"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
 <ul>
   <li>Load the file sm_annotation.tsv into R</li>
   <li>Inspect your data, what are the variables?</li>
@@ -45,7 +50,27 @@
   <li>What does the plot tell you about secondary metabolism in the 4 species</li>
 </ul>
 
-<p>##</p>
+<h2 id="combining-the-sets">Combining the sets</h2>
+
+<p>Create a combination of your secondary metabolite annotations and interpro annotations</p>
+
+<ul>
+  <li>What are common columns between the two sets?</li>
+  <li>What do interpro annotations tell you about a protein?</li>
+  <li>What does your dataframe now represent?</li>
+</ul>
+
+<h3 id="case-1-pks">Case 1 PKS</h3>
+
+<ul>
+  <li>What are regular domains inside PKSs?</li>
+  <li>What are domains with special functions?</li>
+  <li>Using subsetting, find all PKSs that contain a Methyltransferase.</li>
+  <li>Provide a dataframe showing the sum of all PKS containing Methyltransferases for all organisms.</li>
+  <li>Repeat the last two steps for another domains with special function inside PKSs.</li>
+</ul>
+
+<h2 id="similarity-of-clusters">Similarity of clusters</h2>
 
 
 <!-- <nav class="nav-primary" role="navigation" >

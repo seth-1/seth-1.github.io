@@ -43,10 +43,11 @@
 <div class="highlighter-rouge"><pre class="highlight"><code>a &lt;- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
 a &lt;- seq(5)       # does the same as the line above using the seq function
 sum(a)            # calculates the sum of a
+length(a)
 class(a)
 
 
-letters           # built in letters
+letters          
 class(letters)
 b &lt;- letters[1:20] # subsetting for first to 20th character
 c &lt;- letters[10:20]
@@ -55,8 +56,8 @@ union(b,c,d)
 
 </code></pre>
 </div>
-
 <ul>
+  <li>What do the <code class="highlighter-rouge">length()</code> and <code class="highlighter-rouge">class()</code> functions tell you?</li>
   <li>How does the <code class="highlighter-rouge">union()</code> function differ from the <code class="highlighter-rouge">c()</code> function?</li>
   <li>How can you find the shared characters between b and c? Tip: Try the help function on <code class="highlighter-rouge">union()</code></li>
 </ul>
@@ -95,13 +96,29 @@ union(b,c,d)
 
 <h2 id="subsetting">Subsetting</h2>
 
-<p>Data frames and other types of data can be subsetted to concentrate on certain groups of organisms, enzymes etc.</p>
+<p>Data frames and other types of data can be subsetted to concentrate on certain groups of organisms, enzymes etc. We need to cover some more concepts to understand subsetting.</p>
+
+<p>Try the following lines and describe what you get as a result:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">iris</span><span class="w">
+</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w">
+</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="w">
+</span><span class="n">iris</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),]</span><span class="w">
+</span><span class="n">iris</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>We combine now two terms to subset our data frame:</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">iris</span><span class="p">[</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">,]</span><span class="w">
 </span></code></pre>
 </div>
 
 <p>Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame <code class="highlighter-rouge">iris[rows,columns]</code> and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of <code class="highlighter-rouge">iris$species</code> if they are containing the term <code class="highlighter-rouge">'setosa'</code>. Remember that single <code class="highlighter-rouge">=</code> will mean an assignment operation like in <code class="highlighter-rouge">a = 1</code> and only double equation marks <code class="highlighter-rouge">==</code> will create a comparison.</p>
+
+<h2 id="merging">Merging</h2>
+
+<p>Often we need to combine</p>
 
 <h2 id="ggplot2-basics">ggplot2 basics</h2>
 
@@ -127,11 +144,15 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p><img src="figures/carsHistoDodged.png" alt="carsHistogram" /></p>
 
+<!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
+
 <h1 id="more-info-on-r">More info on R</h1>
 
 <p>A more detailed introduction to R can be found on another <a href="https://cmgbiotech.wordpress.com/tutorials/introduction-to-r/">course page</a></p>
 
 <h2 id="reading-data-into-r">Reading data into R</h2>
+
+<p>Built in datasets are a good resource to work on examples, however if you want to work on your own data you have to read it in using functions.</p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
 </span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header

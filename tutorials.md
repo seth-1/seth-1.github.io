@@ -24,10 +24,11 @@ R works with vectors of different kinds which is similar to other programming la
 a <- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
 a <- seq(5)       # does the same as the line above using the seq function
 sum(a)            # calculates the sum of a
+length(a)
 class(a)
 
 
-letters           # built in letters
+letters          
 class(letters)
 b <- letters[1:20] # subsetting for first to 20th character
 c <- letters[10:20]
@@ -35,9 +36,10 @@ d <- letters[15:25]
 union(b,c,d)
 
 ```
-
+* What do the ```length()``` and ```class()``` functions tell you?
 * How does the ```union()``` function differ from the ```c()``` function?
 * How can you find the shared characters between b and c? Tip: Try the help function on ```union()```
+
 
 
 ## Data frames and built in datasets
@@ -72,7 +74,19 @@ Quick recap of plant biology:
 
 ## Subsetting
 
-Data frames and other types of data can be subsetted to concentrate on certain groups of organisms, enzymes etc.
+Data frames and other types of data can be subsetted to concentrate on certain groups of organisms, enzymes etc. We need to cover some more concepts to understand subsetting.
+
+Try the following lines and describe what you get as a result:
+
+```r
+iris
+iris$species
+iris$species == 'setosa'
+iris[c(1,2,3),]
+iris[,c(1,2)]
+```
+
+We combine now two terms to subset our data frame:
 
 ```r
 iris[iris$species == 'setosa',]
@@ -81,6 +95,9 @@ iris[iris$species == 'setosa',]
 Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame ```iris[rows,columns]``` and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of ```iris$species``` if they are containing the term ```'setosa'```. Remember that single ```=``` will mean an assignment operation like in ```a = 1``` and only double equation marks ```==``` will create a comparison.
 
 
+## Merging
+
+Often we need to combine
 
 ## ggplot2 basics
 
@@ -106,6 +123,7 @@ ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'd
 
 ![carsHistogram](figures/carsHistoDodged.png)
 
+<!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
 
 
 # More info on R
@@ -116,6 +134,8 @@ A more detailed introduction to R can be found on another [course page](https://
 
 
 ## Reading data into R
+
+Built in datasets are a good resource to work on examples, however if you want to work on your own data you have to read it in using functions.
 
 ```r
 dat <- read.table("example.tsv", sep = '\t') # Reading example file
