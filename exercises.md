@@ -34,32 +34,32 @@ Create a combination of your secondary metabolite annotations and interpro annot
 * What do interpro annotations tell you about a protein?
 * What does your dataframe now represent?
 
-### Case 1 PKS
+## Case 1 PKS
 
-<div class = "spec-hi" >
-<p>Trying without paragraph</p>
+In comparative genomics and genome mining we often want to compare proteins by their annotations. One way to get a general view on the secondary metabolites produced by your organisms is to characterize a certain class of metabolites by their domains. In the following exercise we will focus on PKSs and their domains to characterize the products of our organisms.
+
+### Recap
+
+You already know about the basic build of PKSs, i.e. 3 domains with initiating, elongating and terminating function.
+
+* What are the domains that serve the functions needed to **synthesize** a polyketide
+* What are optional domains which further **diversify** the polyketide
+
+<!-- <div class = "spec-hi" >
+<p>You already know about the basic build of PKS. It needs 3 domains with initiating, elongating and terminating function.  </p>
+<ul>
+<li>What are the domains that serve the functions needed to synthesize a polyketide </li>
+<li>What are optional domains which further diversify the polyketide</li>
+</ul>
 </div>
-<!-- If the latter crashes use or looks weird use a paragraph element inside the div -->
+If the latter crashes use or looks weird use a paragraph element inside the container -->
 
+### Data questions
 
-* What are regular domains inside PKSs?
-* What are domains with special functions?
+* Inspect the dataframe. Which column contains information about domains? Can you identify domains belonging to PKSs?
+* can you recognize domains you learned about which further modify a *simple* PKS product?
 * Using subsetting, find all PKSs that contain a Methyltransferase.
 * Provide a dataframe showing the sum of all PKS containing Methyltransferases for all organisms.
 * Repeat the last two steps for another domains with special function inside PKSs.
 
-## Similarity of clusters
-
-### Introduction to lapply and sapply
-
-The apply family of functions working similar to for-loops, meaning:
-
-```r
-for(element in l){
-  length(element)
-}
-
-lapply(l, length) # Is basically the same as above.
-```
-
- ```lapply``` will retain the list structure while ```sapply``` is simplifying the result to a vector.
+## Case 2 Gene cluster similarity

@@ -41,6 +41,17 @@ union(b,c,d)
 * How can you find the shared characters between b and c? Tip: Try the help function on ```union()```
 
 
+## Reading data into R
+
+We can read in data using functions:
+
+```r
+dat <- read.table("example.tsv", sep = '\t') # Reading example file
+head(dat)                                    # Showing the header
+str(dat)                                     # Overview of observations (rows) and variables (columns)
+```
+
+In the following tutorial we will use built in datasets. In the exercises we will read in a dataset.
 
 ## Data frames and built in datasets
 
@@ -70,7 +81,7 @@ R's favorite data structure is the data frame which is a table containing differ
 ```
 
 Quick recap of plant biology:
-![orchid flower anatomy](https://upload.wikimedia.org/wikipedia/commons/8/80/VanillaFlowerLongitudinalSection-en.png)
+![orchid flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg)
 
 ## Subsetting
 
@@ -125,20 +136,73 @@ ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'd
 
 <!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
 
+### More basic functions
+
+
+#### aggregate
+
+The aggregate function is very helpful for summary statistics. In case you want to know, e.g. what the average petal length per species is. Aggregates syntax follows ```aggregate(varOfInterest ~ groupVar)```.
+
+```r
+aggregate(Petal.Length ~ Species, data = iris , FUN =  mean)
+```
+
+* What is the mean Petal.Length for each species?
+* What is the mean Sepal.Width for each species?
+
+
+#### split
+
+Split let's you split a data frame into a list. This is helpful for many downstream applications and readability (more on this later).
+
+```r
+irisL <- split(iris, iris$Species) # creating a list of the iris dataset
+
+iris # print and see
+
+irisL['versicolor ']
+irisL[['versicolor ']]
+
+```
+* What is the difference between the last two statements? Tip: Use the ```class()``` function on the sublist of *versicolor* species but also print it to spot the difference
+
+#### merge
+
+Often you want to merge datasets. E.g. if you have annotation data from different sources.
+
+
+```r
+merge(dfA, dfB, by = "commonCol")
+
+```
+
+
+### Introduction to lapply and sapply
+
+The apply family of functions working similar to for-loops, meaning:
+
+```r
+nrow(iris) # will give you the number of rows for the entire data frame
+
+irisL
+
+for(x in irisL){
+  nrow(element)
+}
+
+lapply(l, nrow) # Is basically the same as above.
+
+lapply(irisL, function(x){
+  x
+  })
+
+```
+
+The function ```lapply``` will retain the list structure while ```sapply``` is simplifying the result to a vector.
+
+
+
 
 # More info on R
 
 A more detailed introduction to R can be found on another [course page](https://cmgbiotech.wordpress.com/tutorials/introduction-to-r/)
-
-
-
-
-## Reading data into R
-
-Built in datasets are a good resource to work on examples, however if you want to work on your own data you have to read it in using functions.
-
-```r
-dat <- read.table("example.tsv", sep = '\t') # Reading example file
-head(dat)                                    # Showing the header
-str(dat)                                     # Overview of observations (rows) and variables (columns)
-```

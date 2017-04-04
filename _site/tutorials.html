@@ -62,6 +62,18 @@ union(b,c,d)
   <li>How can you find the shared characters between b and c? Tip: Try the help function on <code class="highlighter-rouge">union()</code></li>
 </ul>
 
+<h2 id="reading-data-into-r">Reading data into R</h2>
+
+<p>We can read in data using functions:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
+</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header
+</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)
+</span></code></pre>
+</div>
+
+<p>In the following tutorial we will use built in datasets. In the exercises we will read in a dataset.</p>
+
 <h2 id="data-frames-and-built-in-datasets">Data frames and built in datasets</h2>
 
 <p>R’s favorite data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.</p>
@@ -92,7 +104,7 @@ union(b,c,d)
 </div>
 
 <p>Quick recap of plant biology:
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/80/VanillaFlowerLongitudinalSection-en.png" alt="orchid flower anatomy" /></p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg" alt="orchid flower anatomy" /></p>
 
 <h2 id="subsetting">Subsetting</h2>
 
@@ -146,19 +158,73 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
 
+<h3 id="more-basic-functions">More basic functions</h3>
+
+<h4 id="aggregate">aggregate</h4>
+
+<p>The aggregate function is very helpful for summary statistics. In case you want to know, e.g. what the average petal length per species is. Aggregates syntax follows <code class="highlighter-rouge">aggregate(varOfInterest ~ groupVar)</code>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">aggregate</span><span class="p">(</span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">mean</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>What is the mean Petal.Length for each species?</li>
+  <li>What is the mean Sepal.Width for each species?</li>
+</ul>
+
+<h4 id="split">split</h4>
+
+<p>Split let’s you split a data frame into a list. This is helpful for many downstream applications and readability (more on this later).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">irisL</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w"> </span><span class="c1"># creating a list of the iris dataset
+</span><span class="w">
+</span><span class="n">iris</span><span class="w"> </span><span class="c1"># print and see
+</span><span class="w">
+</span><span class="n">irisL</span><span class="p">[</span><span class="s1">'versicolor '</span><span class="p">]</span><span class="w">
+</span><span class="n">irisL</span><span class="p">[[</span><span class="s1">'versicolor '</span><span class="p">]]</span><span class="w">
+
+</span></code></pre>
+</div>
+<ul>
+  <li>What is the difference between the last two statements? Tip: Use the <code class="highlighter-rouge">class()</code> function on the sublist of <em>versicolor</em> species but also print it to spot the difference</li>
+</ul>
+
+<h4 id="merge">merge</h4>
+
+<p>Often you want to merge datasets. E.g. if you have annotation data from different sources.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">merge</span><span class="p">(</span><span class="n">dfA</span><span class="p">,</span><span class="w"> </span><span class="n">dfB</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"commonCol"</span><span class="p">)</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<h3 id="introduction-to-lapply-and-sapply">Introduction to lapply and sapply</h3>
+
+<p>The apply family of functions working similar to for-loops, meaning:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w"> </span><span class="c1"># will give you the number of rows for the entire data frame
+</span><span class="w">
+</span><span class="n">irisL</span><span class="w">
+
+</span><span class="k">for</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">irisL</span><span class="p">){</span><span class="w">
+  </span><span class="n">nrow</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">lapply</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.
+</span><span class="w">
+</span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="w">
+  </span><span class="n">x</span><span class="w">
+  </span><span class="p">})</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<p>The function <code class="highlighter-rouge">lapply</code> will retain the list structure while <code class="highlighter-rouge">sapply</code> is simplifying the result to a vector.</p>
+
 <h1 id="more-info-on-r">More info on R</h1>
 
 <p>A more detailed introduction to R can be found on another <a href="https://cmgbiotech.wordpress.com/tutorials/introduction-to-r/">course page</a></p>
-
-<h2 id="reading-data-into-r">Reading data into R</h2>
-
-<p>Built in datasets are a good resource to work on examples, however if you want to work on your own data you have to read it in using functions.</p>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
-</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header
-</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)
-</span></code></pre>
-</div>
 
 
 <!-- <nav class="nav-primary" role="navigation" >
