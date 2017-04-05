@@ -108,6 +108,8 @@ Try the following lines and describe what you get as a result:
 iris
 iris$species
 iris$species == 'setosa'
+subset(iris, Species == 'setosa') # same as above
+iris$species %in% c('setosa', 'versicolor')
 iris[c(1,2,3),]
 iris[,c(1,2)]
 ```

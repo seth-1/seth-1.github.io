@@ -130,6 +130,8 @@ We can read in data using functions. You can download the file example.tsv <a hr
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">iris</span><span class="w">
 </span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w">
 </span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="w">
+</span><span class="n">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">Species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">)</span><span class="w"> </span><span class="c1"># same as above
+</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'setosa'</span><span class="p">,</span><span class="w"> </span><span class="s1">'versicolor'</span><span class="p">)</span><span class="w">
 </span><span class="n">iris</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),]</span><span class="w">
 </span><span class="n">iris</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)]</span><span class="w">
 </span></code></pre>
@@ -290,6 +292,10 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <!-- <nav class="nav-primary" role="navigation" >
     <ul>
+        
+        <li>
+        	<a  href="/compoundMining.html">compounds</a>
+        </li>
         
         <li>
         	<a  href="/exercises.html">Exercises</a>

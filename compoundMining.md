@@ -1,3 +1,7 @@
+---
+layout: default
+title: compounds
+---
 Try to mine your dataset using the following for the following compounds:
 
 You will have to find the structures in literature or databases to find necessary domains.
