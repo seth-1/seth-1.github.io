@@ -30,36 +30,69 @@
 
 <h2 id="input">Input</h2>
 
-<p>To tell Rstudio where you want to work copy the file path like below and execute it in Rstudio</p>
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">setwd</span><span class="p">(</span><span class="s2">"path/to/directory"</span><span class="p">)</span><span class="w">
+<p>To tell Rstudio where you want to work, copy the file path like below and execute it in Rstudio</p>
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># unix system (mac/linux)
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"path/to/directory"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># in windows you have two options
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"C:\\Users\\user\\Desktop"</span><span class="p">)</span><span class="w">
+</span><span class="n">setwd</span><span class="p">(</span><span class="s2">"C:/Users/user/Desktop"</span><span class="p">)</span><span class="w">
+
 </span></code></pre>
 </div>
-
 <ul>
-  <li>Load the file sm_annotation.tsv into R</li>
-  <li>Inspect your data, what are the variables?</li>
+  <li>Create a directory for you project and set it as Rstudio working directory</li>
+  <li>Insert the file sm_annotation.tsv into your directory and load it into R</li>
+  <li>Inspect your data. What are column names? What are the variables?</li>
 </ul>
 
 <h2 id="overview">Overview</h2>
 
-<p>Create an overview of the secondary metabolism for all organisms.</p>
+<p>Data visualizations can give us a much better overview than the data frame or table. Many visualizations include summary functions which e.g. calculate the mean, quantiles, etc. of the data you are dealing with, to get an impression of the range of values over different species.</p>
+
+<p>In this exercise, we are interested in the content of secondary metabolic proteins across all our fungal species. We want to determine which one has the most valuable repertoire of natural products and how they compare in different classes of secondary metabolites. An expansion of a certain class of compounds for example could have been an important driver of the sections speciation.</p>
 
 <ul>
-  <li>Choose an appropriate visualization for your data</li>
-  <li>Why did you choose a certain geom for your plot?</li>
-  <li>What does the plot tell you about secondary metabolism in the 4 species</li>
-  <li>Write a function that shows you the results in a table</li>
+  <li>Create an overview of the secondary metabolism proteins for all organisms.
+    <ul>
+      <li>Use ggplot for visualization</li>
+      <li>Use different colors for the different classes of proteins</li>
+      <li>Which geom not only visualizes but also summarizes the data? Tip: We covered some geoms in the tutorial. Which one matches the criterium?</li>
+    </ul>
+  </li>
+  <li>Save the plot and write down your conclusion
+    <ul>
+      <li>What does the plot tell you about secondary metabolism in the 4 species</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Now we summarized the data using ggplot geoms.</p>
+<ul>
+  <li>As a coding exercise, summarize the total amount of proteins per organism. Tip: You need to separate the data and summarize it afterwards.</li>
 </ul>
 
 <h2 id="combining-the-sets">Combining the sets</h2>
 
-<p>Create a combination of your secondary metabolite annotations and interpro annotations</p>
+<p>Often we need to combine datasets from different sources, e.g. to include an additional analysis. This might range from locations of samples, to predictions of signal peptides, to a Pfam analysis. Adding more information (variables) to our dataset helps us to facilitate a more in depth analysis.</p>
+
+<p>Create a combination of your secondary metabolite annotations and interpro annotations to find out which secondary metabolite proteins carry which domains.</p>
 
 <ul>
-  <li>What are common columns between the two sets?</li>
+  <li>Inspect your secondary metabolite annotations and interpro annotations (includes Pfam). What are common columns between the two sets?</li>
   <li>What do interpro annotations tell you about a protein?</li>
-  <li>What does your dataframe now represent?</li>
 </ul>
+
+<blockquote>
+  <p>Info:
+In the secondary metabolite annotations, you will find sm_protein_id and clust_backbone. clust_backbone describes a protein with a sm_protein_id which is the main identifier for this cluster.</p>
+</blockquote>
+
+<ul>
+  <li>Join the secondary metabolite annotations and interpro annotations together, using the two columns you identified as shared between the datasets. Save the resulting dataset in an object called <code class="highlighter-rouge">comb</code>.</li>
+</ul>
+
+<p>The resulting dataset will help us to characterize the proteins by their Pfam domains.</p>
 
 <h2 id="case-1-pks">Case 1 PKS</h2>
 
@@ -86,15 +119,42 @@ If the latter crashes use or looks weird use a paragraph element inside the cont
 
 <h3 id="data-questions">Data questions</h3>
 
+<p>Mining for natural products, we are interested in enzymes with certain functions. E.g. you know your compound is a methylated polyketide and you want to find the genecluster responsible for it’s production.</p>
+
 <ul>
   <li>Inspect the dataframe. Which column contains information about domains? Can you identify domains belonging to PKSs?</li>
-  <li>can you recognize domains you learned about which further modify a <em>simple</em> PKS product?</li>
-  <li>Using subsetting, find all PKSs that contain a Methyltransferase.</li>
-  <li>Provide a dataframe showing the sum of all PKS containing Methyltransferases for all organisms.</li>
+  <li>Can you recognize domains you learned about which further modify a <em>simple</em> PKS product?</li>
+  <li>Using subsetting, find all PKSs that contain a Methyltransferase. Hint: Save the result to a new variable</li>
+  <li>Provide a dataframe showing the sum of all PKS containing Methyltransferases for each organism.</li>
   <li>Repeat the last two steps for another domains with special function inside PKSs.</li>
 </ul>
 
 <h2 id="case-2-gene-cluster-similarity">Case 2 Gene cluster similarity</h2>
+
+<p>Final exercise! Comparing gene clusters is a method to characterize the diversity of secondary metabolites. We will use our combined dataset, especially Pfam domains to create a comparison of gene clusters across all organisms.</p>
+
+<ul>
+  <li>For ease of use, create a new identifier column in your dataset using the organism id and the cluster backbone id.
+    <div class="highlighter-rouge"><pre class="highlight"><code>comb$cid &lt;- paste(comb$org_id, comb$clust_backbone, sep = '_')
+</code></pre>
+    </div>
+  </li>
+  <li>Inspect your data frame! What did the above line of code change? You might need to change data frame or column names</li>
+  <li>
+    <p>Create a subset of your data frame only containing PKS clusters.</p>
+  </li>
+  <li>Create a list of your combined dataset separated apart by Species. Hint: Which function did we use to do the same with the iris dataset?</li>
+  <li>Use lapply to go through your list with a custom function on the variable x.
+    <ul>
+      <li>In this custom function use another sapply to go through your list again with a custom function on the variable y</li>
+      <li>Create a measure for the relative amount of shared domains between x and y (should be a numeric variable, if not use <code class="highlighter-rouge">as.numeric()</code>)</li>
+      <li>Hint: The section on the apply family of functions can help</li>
+      <li>Plot the resulting matrix as heatmap.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- * The resulting dataset is very large. Can you subset on organisms or can you only show PKS? -->
 
 
 <!-- <nav class="nav-primary" role="navigation" >

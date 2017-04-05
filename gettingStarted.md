@@ -11,7 +11,7 @@ Install Rstudio from the following [site](https://www.rstudio.com/products/RStud
 
 Rstudio is an integrated development environment (IDE), meaning it provides you with an interface to write your script, execute it, inspect your workspace (data loaded in memory) and manage packages.
 
-When typing into the script, Rstudio will suggest you functions that match the word you are typing. To autocomplete, select the right function with the arrow keys and press the tab or enter key. Once you are finished with a line of code, you can execute it by *ctrl + enter* (*cmd + enter* for Mac). Select blocks of code with the mouse and hit *ctrl + enter* to execute a whole code block.
+When typing into the script, Rstudio will suggest you functions that match the word you are typing. To autocomplete, select the right function with the arrow keys and press the tab or enter key. Once you are finished with a line of code, you can execute it by *ctrl + enter* (*cmd + enter* for Mac, or the button clicked in the video). Select blocks of code with the mouse and hit *ctrl + enter* to execute a whole code block.
 
 ![working window](figures/intro.gif)
 

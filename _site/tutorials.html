@@ -78,7 +78,7 @@ We can read in data using functions. You can download the file example.tsv <a hr
 </div>
 
 <ul>
-  <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer.</li>
+  <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).</li>
 </ul>
 
 <p>In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.</p>
@@ -264,8 +264,7 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 </span><span class="n">exampleMat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">100</span><span class="p">),</span><span class="w">
        </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
-       </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">speciesNames</span><span class="p">,</span><span class="w"> </span><span class="n">speciesNames</span><span class="p">))</span><span class="w">
-
+       </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">speciesNames</span><span class="p">,</span><span class="w"> </span><span class="n">speciesNames</span><span class="p">))</span><span class="w"> </span><span class="c1"># dimnames needs a list for row- and columnnames
 </span><span class="n">exampleMat</span><span class="w">
 
 </span><span class="n">heatmap.2</span><span class="p">(</span><span class="n">exampleMat</span><span class="p">,</span><span class="w">

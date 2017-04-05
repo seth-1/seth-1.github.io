@@ -57,7 +57,7 @@ head(dat)                                    # Showing the header
 str(dat)                                     # Overview of observations (rows) and variables (columns)
 ```
 
-* Why do we need the sep and header argument? Try the help function of read.table to find the answer.
+* Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).
 
 In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.
 
@@ -241,8 +241,7 @@ speciesNames <- unique(iris$Species)
 
 exampleMat <- matrix(c(100,70,50,70,100,85,50,85,100),
        nrow = 3, ncol = 3,
-       dimnames = list(speciesNames, speciesNames))
-
+       dimnames = list(speciesNames, speciesNames)) # dimnames needs a list for row- and columnnames
 exampleMat
 
 heatmap.2(exampleMat,
