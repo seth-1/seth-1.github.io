@@ -16,6 +16,9 @@ More data will become available and it will become increasingly important to wor
 
 # Working with R
 
+In this tutorial you will find code examples (snippets) and exercises. Type the snippets into your R script and execute them. Inspect what the functions do. Afterwards, try the exercises beneath the snippets.
+
+
 ## R basics
 
 R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. ```c()``` in the example below is a function which *concatenates* the numeric values *1,2,3,4,5* to a numeric vector.
@@ -36,30 +39,39 @@ d <- letters[15:25]
 union(b,c,d)
 
 ```
+
 * What do the ```length()``` and ```class()``` functions tell you?
 * How does the ```union()``` function differ from the ```c()``` function?
 * How can you find the shared characters between b and c? Tip: Try the help function on ```union()```
+* Try out the function on objects b and c you found in the last
 
 
 ## Reading data into R
 
-We can read in data using functions:
+Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
+We can read in data using functions. You can download the file example.tsv [here](example.tsv)
 
 ```r
-dat <- read.table("example.tsv", sep = '\t') # Reading example file
+dat <- read.table("example.tsv", sep = '\t', header = TRUE) # Reading example file
 head(dat)                                    # Showing the header
 str(dat)                                     # Overview of observations (rows) and variables (columns)
 ```
 
-In the following tutorial we will use built in datasets. In the exercises we will read in a dataset.
+* Why do we need the sep and header argument? Try the help function of read.table to find the answer.
+
+In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.
 
 ## Data frames and built in datasets
 
-R's favorite data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.
+R's most common data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.
 
 > This famous (Fisher's or Anderson's) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
 
 ## Data Overview
+
+To get an overview of your data you can use the ```head()``` and ```str()``` function or simply print the object to console by typing the variables name and executing the line. Alternatively you can inspect your data in Rstudio using the **environment panel**.
+
+![viewing data](figures/viewDatasets.gif)
 
 ```r
 > head(iris)
@@ -81,7 +93,10 @@ R's favorite data structure is the data frame which is a table containing differ
 ```
 
 Quick recap of plant biology:
-![orchid flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg)
+<!-- ![iris flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg) -->
+
+![orchid anatomy](http://plant-life.org/Orchidaceae/orchid3.gif)
+
 
 ## Subsetting
 
@@ -116,6 +131,7 @@ ggplot2 requires your dataframe in the first argument ```ggplot(yourDataFrame)``
 In the follwing example we use the standard R iris dataset and plot length of petals against length of sepals.
 
 ```r
+library(ggplot2)
 ggplot(iris)+ geom_point(aes(x = Sepal.Length, y = Petal.Length, color = Species))
 ```
 ![ggplotBasics](figures/ggplotExample.png)
@@ -151,6 +167,30 @@ aggregate(Petal.Length ~ Species, data = iris , FUN =  mean)
 * What is the mean Sepal.Width for each species?
 
 
+#### merge
+
+Often you want to merge datasets. E.g. if you have annotation data from different sources. Let's merge the iris dataset with a (completely made up) dataset of poisonus iris species.
+
+
+```r
+
+iris
+
+poison <- data.frame(
+  poisonous = c('poisonous', 'non-poisonous', 'non-poisonous'),
+  Species = c('setosa', 'virginica', 'versicolor')
+  )
+
+pplants <- merge(iris, poison, by = "Species")
+
+pplants # What happened to the dataset?
+
+aggregate( Petal.Length~poisonous, pplants, mean)
+
+```
+
+* What does the last line tell us about the anatomy of poisonous plants?
+
 #### split
 
 Split let's you split a data frame into a list. This is helpful for many downstream applications and readability (more on this later).
@@ -166,17 +206,6 @@ irisL[['versicolor ']]
 ```
 * What is the difference between the last two statements? Tip: Use the ```class()``` function on the sublist of *versicolor* species but also print it to spot the difference
 
-#### merge
-
-Often you want to merge datasets. E.g. if you have annotation data from different sources.
-
-
-```r
-merge(dfA, dfB, by = "commonCol")
-
-```
-
-
 ### Introduction to lapply and sapply
 
 The apply family of functions working similar to for-loops, meaning:
@@ -190,7 +219,7 @@ for(x in irisL){
   nrow(element)
 }
 
-lapply(l, nrow) # Is basically the same as above.
+lapply(irisL, nrow) # Is basically the same as above.
 
 lapply(irisL, function(x){
   x
@@ -198,9 +227,36 @@ lapply(irisL, function(x){
 
 ```
 
-The function ```lapply``` will retain the list structure while ```sapply``` is simplifying the result to a vector.
+The function ```lapply()``` will retain the list structure while ```sapply()``` is simplifying the result to a vector.
 
 
+### Almost done: Heatmaps in R
+
+Heatmaps are excellent to show relationships of e.g. organisms in large datasets. Given a similarity matrix we can create a plot which provides us with additional clustered information. We will need to introduce the matrix as another data object.
+
+```r
+library(gplots)
+
+speciesNames <- unique(iris$Species)
+
+exampleMat <- matrix(c(100,70,50,70,100,85,50,85,100),
+       nrow = 3, ncol = 3,
+       dimnames = list(speciesNames, speciesNames))
+
+exampleMat
+
+heatmap.2(exampleMat,
+          trace = 'none',
+          margins = c(10,10)
+          )
+
+```
+
+* What does the heatmap tell you about the releationship of the iris species?
+
+
+
+> Well done, you finished the tutorial! Now try out your R skills in the exercises.
 
 
 # More info on R

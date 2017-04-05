@@ -42,8 +42,9 @@ In comparative genomics and genome mining we often want to compare proteins by t
 
 You already know about the basic build of PKSs, i.e. 3 domains with initiating, elongating and terminating function.
 
-* What are the domains that serve the functions needed to **synthesize** a polyketide
-* What are optional domains which further **diversify** the polyketide
+Based on your background knowledge of PKSs:
+* What is the minimum set of domains needed to synthesize a polyketide?
+* What are optional domains which further **diversify** the polyketide?
 
 <!-- <div class = "spec-hi" >
 <p>You already know about the basic build of PKS. It needs 3 domains with initiating, elongating and terminating function.  </p>

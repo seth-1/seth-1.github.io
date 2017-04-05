@@ -36,6 +36,8 @@
 
 <h1 id="working-with-r">Working with R</h1>
 
+<p>In this tutorial you will find code examples (snippets) and exercises. Type the snippets into your R script and execute them. Inspect what the functions do. Afterwards, try the exercises beneath the snippets.</p>
+
 <h2 id="r-basics">R basics</h2>
 
 <p>R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. <code class="highlighter-rouge">c()</code> in the example below is a function which <em>concatenates</em> the numeric values <em>1,2,3,4,5</em> to a numeric vector.</p>
@@ -56,33 +58,44 @@ union(b,c,d)
 
 </code></pre>
 </div>
+
 <ul>
   <li>What do the <code class="highlighter-rouge">length()</code> and <code class="highlighter-rouge">class()</code> functions tell you?</li>
   <li>How does the <code class="highlighter-rouge">union()</code> function differ from the <code class="highlighter-rouge">c()</code> function?</li>
   <li>How can you find the shared characters between b and c? Tip: Try the help function on <code class="highlighter-rouge">union()</code></li>
+  <li>Try out the function on objects b and c you found in the last</li>
 </ul>
 
 <h2 id="reading-data-into-r">Reading data into R</h2>
 
-<p>We can read in data using functions:</p>
+<p>Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
+We can read in data using functions. You can download the file example.tsv <a href="example.tsv">here</a></p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
 </span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header
 </span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)
 </span></code></pre>
 </div>
 
-<p>In the following tutorial we will use built in datasets. In the exercises we will read in a dataset.</p>
+<ul>
+  <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer.</li>
+</ul>
+
+<p>In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.</p>
 
 <h2 id="data-frames-and-built-in-datasets">Data frames and built in datasets</h2>
 
-<p>R’s favorite data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.</p>
+<p>R’s most common data structure is the data frame which is a table containing different numeric values, as well as descriptive values like characters or factors. R has a few build in datasets like the iris dataset.</p>
 
 <blockquote>
   <p>This famous (Fisher’s or Anderson’s) iris data set gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.</p>
 </blockquote>
 
 <h2 id="data-overview">Data Overview</h2>
+
+<p>To get an overview of your data you can use the <code class="highlighter-rouge">head()</code> and <code class="highlighter-rouge">str()</code> function or simply print the object to console by typing the variables name and executing the line. Alternatively you can inspect your data in Rstudio using the <strong>environment panel</strong>.</p>
+
+<p><img src="figures/viewDatasets.gif" alt="viewing data" /></p>
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
   </span><span class="n">Sepal.Length</span><span class="w"> </span><span class="n">Sepal.Width</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="n">Species</span><span class="w">
@@ -104,7 +117,9 @@ union(b,c,d)
 </div>
 
 <p>Quick recap of plant biology:
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg" alt="orchid flower anatomy" /></p>
+<!-- ![iris flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg) --></p>
+
+<p><img src="http://plant-life.org/Orchidaceae/orchid3.gif" alt="orchid anatomy" /></p>
 
 <h2 id="subsetting">Subsetting</h2>
 
@@ -137,7 +152,8 @@ union(b,c,d)
 <p>ggplot2 requires your dataframe in the first argument <code class="highlighter-rouge">ggplot(yourDataFrame)</code> afterwards you specify the type of plot like e.g. <code class="highlighter-rouge">geom_point()</code> and set the aesthetic mapping inside the latter function. Aesthetics tell ggplot the variables for each axis <code class="highlighter-rouge">x,y</code> and the groups you want to specify by <code class="highlighter-rouge">color</code>.
 In the follwing example we use the standard R iris dataset and plot length of petals against length of sepals.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Species</span><span class="p">))</span><span class="w">
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Species</span><span class="p">))</span><span class="w">
 </span></code></pre>
 </div>
 <p><img src="figures/ggplotExample.png" alt="ggplotBasics" /></p>
@@ -173,6 +189,31 @@ In the follwing example we use the standard R iris dataset and plot length of pe
   <li>What is the mean Sepal.Width for each species?</li>
 </ul>
 
+<h4 id="merge">merge</h4>
+
+<p>Often you want to merge datasets. E.g. if you have annotation data from different sources. Let’s merge the iris dataset with a (completely made up) dataset of poisonus iris species.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="w">
+</span><span class="n">iris</span><span class="w">
+
+</span><span class="n">poison</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="w">
+  </span><span class="n">poisonous</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'poisonous'</span><span class="p">,</span><span class="w"> </span><span class="s1">'non-poisonous'</span><span class="p">,</span><span class="w"> </span><span class="s1">'non-poisonous'</span><span class="p">),</span><span class="w">
+  </span><span class="n">Species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'setosa'</span><span class="p">,</span><span class="w"> </span><span class="s1">'virginica'</span><span class="p">,</span><span class="w"> </span><span class="s1">'versicolor'</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+
+</span><span class="n">pplants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">poison</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Species"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pplants</span><span class="w"> </span><span class="c1"># What happened to the dataset?
+</span><span class="w">
+</span><span class="n">aggregate</span><span class="p">(</span><span class="w"> </span><span class="n">Petal.Length</span><span class="o">~</span><span class="n">poisonous</span><span class="p">,</span><span class="w"> </span><span class="n">pplants</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<ul>
+  <li>What does the last line tell us about the anatomy of poisonous plants?</li>
+</ul>
+
 <h4 id="split">split</h4>
 
 <p>Split let’s you split a data frame into a list. This is helpful for many downstream applications and readability (more on this later).</p>
@@ -190,15 +231,6 @@ In the follwing example we use the standard R iris dataset and plot length of pe
   <li>What is the difference between the last two statements? Tip: Use the <code class="highlighter-rouge">class()</code> function on the sublist of <em>versicolor</em> species but also print it to spot the difference</li>
 </ul>
 
-<h4 id="merge">merge</h4>
-
-<p>Often you want to merge datasets. E.g. if you have annotation data from different sources.</p>
-
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">merge</span><span class="p">(</span><span class="n">dfA</span><span class="p">,</span><span class="w"> </span><span class="n">dfB</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"commonCol"</span><span class="p">)</span><span class="w">
-
-</span></code></pre>
-</div>
-
 <h3 id="introduction-to-lapply-and-sapply">Introduction to lapply and sapply</h3>
 
 <p>The apply family of functions working similar to for-loops, meaning:</p>
@@ -211,7 +243,7 @@ In the follwing example we use the standard R iris dataset and plot length of pe
   </span><span class="n">nrow</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="n">lapply</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.
+</span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.
 </span><span class="w">
 </span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="w">
   </span><span class="n">x</span><span class="w">
@@ -220,7 +252,37 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 </span></code></pre>
 </div>
 
-<p>The function <code class="highlighter-rouge">lapply</code> will retain the list structure while <code class="highlighter-rouge">sapply</code> is simplifying the result to a vector.</p>
+<p>The function <code class="highlighter-rouge">lapply()</code> will retain the list structure while <code class="highlighter-rouge">sapply()</code> is simplifying the result to a vector.</p>
+
+<h3 id="almost-done-heatmaps-in-r">Almost done: Heatmaps in R</h3>
+
+<p>Heatmaps are excellent to show relationships of e.g. organisms in large datasets. Given a similarity matrix we can create a plot which provides us with additional clustered information. We will need to introduce the matrix as another data object.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span><span class="w">
+
+</span><span class="n">speciesNames</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
+
+</span><span class="n">exampleMat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">100</span><span class="p">),</span><span class="w">
+       </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+       </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">speciesNames</span><span class="p">,</span><span class="w"> </span><span class="n">speciesNames</span><span class="p">))</span><span class="w">
+
+</span><span class="n">exampleMat</span><span class="w">
+
+</span><span class="n">heatmap.2</span><span class="p">(</span><span class="n">exampleMat</span><span class="p">,</span><span class="w">
+          </span><span class="n">trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'none'</span><span class="p">,</span><span class="w">
+          </span><span class="n">margins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">10</span><span class="p">)</span><span class="w">
+          </span><span class="p">)</span><span class="w">
+
+</span></code></pre>
+</div>
+
+<ul>
+  <li>What does the heatmap tell you about the releationship of the iris species?</li>
+</ul>
+
+<blockquote>
+  <p>Well done, you finished the tutorial! Now try out your R skills in the exercises.</p>
+</blockquote>
 
 <h1 id="more-info-on-r">More info on R</h1>
 
