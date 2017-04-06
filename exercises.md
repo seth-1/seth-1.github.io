@@ -27,7 +27,7 @@ setwd("C:/Users/user/Desktop")
 
 Data visualizations can give us a much better overview than the data frame or table. Many visualizations include summary functions which e.g. calculate the mean, quantiles, etc. of the data you are dealing with, to get an impression of the range of values over different species.
 
-In this exercise, we are interested in the content of secondary metabolic proteins across all our fungal species. We want to determine which one has the most valuable repertoire of natural products and how they compare in different classes of secondary metabolites. An expansion of a certain class of compounds for example could have been an important driver of the sections speciation.
+In this exercise, we are interested in the content of secondary metabolic proteins across all our fungal species. We want to determine which one has the most valuable repertoire of natural products and how they compare in different classes of secondary metabolites. An expansion of a certain class of compounds for example, could have been an important driver of the sections evolution.
 
 * Create an overview of the secondary metabolism proteins (the backbone ones, like: PKS, NRPS, PKS-Likes, NRPS-Likes, DMAT, TC, HYRBID, i.e. everything that is not 'none') for all organisms.
   * Use ggplot for visualization
