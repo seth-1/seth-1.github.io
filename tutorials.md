@@ -36,8 +36,11 @@ class(letters)
 b <- letters[1:20] # subsetting for first to 20th character
 c <- letters[10:20]
 d <- letters[15:25]
-union(b,c,d)
+tmp1 <- union(b,c)
+finalUn <- union(tmp1, d)
 
+# more complicated solution for the latter union functions:
+Reduce(union, list(b,c,d))
 ```
 
 * What do the ```length()``` and ```class()``` functions tell you?
