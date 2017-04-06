@@ -22,6 +22,8 @@ setwd("C:/Users/user/Desktop")
 * Create a directory for you project and set it as Rstudio working directory
 * Insert the file sm_annotation.tsv into your directory and load it into R
 * Inspect your data. What are column names? What are the variables?
+* How many organisms are in your dataset?
+* How many proteins are in your dataset?
 
 Schematic representing your data in the smurf data frame:
 
