@@ -27,7 +27,8 @@ setwd("C:/Users/user/Desktop")
 
 ```
 * Create a directory for you project and set it as Rstudio working directory
-* Insert the file sm_annotation.tsv into your directory and load it into R
+* Insert the file smurfData.tsv into your directory and load it into R
+  * NB: The file is only space separated so you don't need the argument ```sep='/t' ``` anymore. Just delete it.
 * Inspect your data. What are column names? What are the variables?
 * How many organisms are in your dataset?
 * How many proteins are in your dataset?
