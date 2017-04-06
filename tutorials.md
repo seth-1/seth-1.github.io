@@ -122,11 +122,6 @@ iris[iris$species == 'setosa',]
 
 Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame ```iris[rows,columns]``` and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of ```iris$species``` if they are containing the term ```'setosa'```. Remember that single ```=``` will mean an assignment operation like in ```a = 1``` and only double equation marks ```==``` will create a comparison.
 
-
-## Merging
-
-Often we need to combine
-
 ## ggplot2 basics
 
 ggplot2 requires your dataframe in the first argument ```ggplot(yourDataFrame)``` afterwards you specify the type of plot like e.g. ```geom_point()``` and set the aesthetic mapping inside the latter function. Aesthetics tell ggplot the variables for each axis ```x,y``` and the groups you want to specify by ```color```.
@@ -142,15 +137,29 @@ ggplot(iris)+ geom_point(aes(x = Sepal.Length, y = Petal.Length, color = Species
 
 Geoms are the types of plots you can create with ggplot2. Try typing ```geom_``` in Rstudio and see what Rstudio suggests to you.
 
-One useful geom is the histogram ```geom_histogram```. This time we specify *fill* to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the ```factor()``` function to create groups of data from numeric data. Try ```mtcars$gear``` vs ```factor(mtcars$gear)```, what is the difference?
+One useful geom is the barplot ```geom_bar```. This time we specify *fill* to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the ```factor()``` function to create groups of data from numeric data. Try ```mtcars$gear``` vs ```factor(mtcars$gear)```, what is the difference?
 
 ```r
+library(ggplot2) # If you have this executed once on top of your script it's fine
 head(mtcars)
 
-ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge')
+ggplot(mtcars) +
+geom_bar(aes(x = factor(cyl), fill = factor(gear)), position = 'dodge', stat = 'count')
 ```
 
 ![carsHistogram](figures/carsHistoDodged.png)
+
+* What does the plot tell you about your cars in the mtcars dataset?
+* The y axis looks a bit weird...
+  * Add scale_y_continuous(breaks = seq(0,13,1)) to your ggplot in the same way we added the geom.
+  * What changed?
+* Compare ```mtcars$gear``` to ```factor(mtcars$gear)```.
+  * What is the difference?
+  * How can R now distinguish different gears?
+* Why did we convert cylinder to a factor?
+  * Try creating the plot without the ```factor()``` function. What's the difference?
+* Try to use the argument ```position = 'stack'```
+  * What does the resulting plot show?
 
 <!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
 
