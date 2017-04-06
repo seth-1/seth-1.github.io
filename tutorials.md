@@ -230,7 +230,7 @@ The apply family of functions working similar to for-loops, meaning:
 nrow(iris) # will give you the number of rows for the entire data frame
 
 for(x in irisL){
-  nrow(x)
+  print(nrow(x))
 }
 
 lapply(irisL, nrow) # Is basically the same as above.
