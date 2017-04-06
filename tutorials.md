@@ -108,10 +108,10 @@ Try the following lines and describe what you get as a result:
 
 ```r
 iris
-iris$species
-iris$species == 'setosa'
+iris$Species
+iris$Species == 'setosa'
 subset(iris, Species == 'setosa') # same as above
-iris$species %in% c('setosa', 'versicolor')
+iris$Species %in% c('setosa', 'versicolor')
 iris[c(1,2,3),]
 iris[,c(1,2)]
 ```
