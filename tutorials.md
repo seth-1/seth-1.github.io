@@ -55,6 +55,8 @@ We can read in data using functions. You can download the file example.tsv [here
 dat <- read.table("example.tsv", sep = '\t', header = TRUE) # Reading example file
 head(dat)                                    # Showing the header
 str(dat)                                     # Overview of observations (rows) and variables (columns)
+
+
 ```
 
 * Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).

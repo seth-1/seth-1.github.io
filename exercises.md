@@ -7,6 +7,10 @@ title: Exercises
 
 We will use antismash outputs of 4 Aspergillus genomes to mine them for secondary metabolic gene clusters. Using R we will develop a high throughput method which helps us to compare multiple datasets containing large amounts of data and mining for natural products of interest.
 
+# Downloads
+
+[smurf data](smurfData.tsv) and [interpro](ipr.tsv)
+
 ## Input
 
 To tell Rstudio where you want to work, copy the file path like below and execute it in Rstudio
