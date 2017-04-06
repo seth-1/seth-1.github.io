@@ -147,7 +147,7 @@ ggplot(mtcars) +
 geom_bar(aes(x = factor(cyl), fill = factor(gear)), position = 'dodge', stat = 'count')
 ```
 
-![carsHistogram](figures/carsHistoDodged.png)
+![carsBarplot](figures/carsHistoDodged.png)
 
 * What does the plot tell you about your cars in the mtcars dataset?
 * The y axis looks a bit weird...
