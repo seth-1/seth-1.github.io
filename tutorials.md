@@ -224,10 +224,8 @@ The apply family of functions working similar to for-loops, meaning:
 ```r
 nrow(iris) # will give you the number of rows for the entire data frame
 
-irisL
-
 for(x in irisL){
-  nrow(element)
+  nrow(x)
 }
 
 lapply(irisL, nrow) # Is basically the same as above.
