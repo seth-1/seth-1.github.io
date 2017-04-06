@@ -114,7 +114,7 @@ comb$cid <- paste(comb$org_id, comb$clust_backbone, sep = '_')
 * Inspect your data frame! What did the above line of code change? You might need to change data frame or column names
 * Create a subset of your data frame only containing PKS clusters.
 
-* Create a list of your combined dataset separated apart by Species. Hint: Which function did we use to do the same with the iris dataset?
+* Create a list of your combined dataset separated apart by clust_backbone. Hint: Which function did we use to do the same with the iris dataset?
 * Use lapply to go through your list with a custom function on the variable x.
   * In this custom function use another sapply to go through your list again with a custom function on the variable y
   * Create a measure for the relative amount of shared domains between x and y (should be a numeric variable, if not use ```as.numeric()```)
