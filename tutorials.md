@@ -216,8 +216,8 @@ irisL <- split(iris, iris$Species) # creating a list of the iris dataset
 
 iris # print and see
 
-irisL['versicolor ']
-irisL[['versicolor ']]
+irisL['versicolor']
+irisL[['versicolor']]
 
 ```
 * What is the difference between the last two statements? Tip: Use the ```class()``` function on the sublist of *versicolor* species but also print it to spot the difference
