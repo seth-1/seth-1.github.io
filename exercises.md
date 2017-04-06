@@ -23,13 +23,17 @@ setwd("C:/Users/user/Desktop")
 * Insert the file sm_annotation.tsv into your directory and load it into R
 * Inspect your data. What are column names? What are the variables?
 
+Schematic representing your data in the smurf data frame:
+
+![dataRepr](figures/smurfData.png)
+
 ## Overview
 
 Data visualizations can give us a much better overview than the data frame or table. Many visualizations include summary functions which e.g. calculate the mean, quantiles, etc. of the data you are dealing with, to get an impression of the range of values over different species.
 
 In this exercise, we are interested in the content of secondary metabolic proteins across all our fungal species. We want to determine which one has the most valuable repertoire of natural products and how they compare in different classes of secondary metabolites. An expansion of a certain class of compounds for example, could have been an important driver of the sections evolution.
 
-* Create an overview of the secondary metabolism proteins (the backbone ones, like: PKS, NRPS, PKS-Likes, NRPS-Likes, DMAT, TC, HYRBID, i.e. everything that is not 'none') for all organisms.
+* Create an overview of the 'backbone' secondary metabolism proteins ( like: PKS, NRPS, PKS-Likes, NRPS-Likes, DMAT, TC, HYRBID, i.e. everything that is not 'none') for all organisms.
   * Use ggplot for visualization
   * Use different colors for the different classes of proteins
   * Which geom not only visualizes but also summarizes the data? Tip: We covered some geoms in the tutorial. Which one matches the criterium?
@@ -40,6 +44,7 @@ In this exercise, we are interested in the content of secondary metabolic protei
 
 Now we summarized the data using ggplot geoms.
 * As a coding exercise, summarize the total amount of proteins per organism. Tip: You need to separate the data and summarize it afterwards.
+  * What is the total amount of backbone proteins?
 
 ## Combining the sets
 

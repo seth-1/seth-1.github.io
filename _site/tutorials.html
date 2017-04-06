@@ -263,10 +263,8 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w"> </span><span class="c1"># will give you the number of rows for the entire data frame
 </span><span class="w">
-</span><span class="n">irisL</span><span class="w">
-
 </span><span class="k">for</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">irisL</span><span class="p">){</span><span class="w">
-  </span><span class="n">nrow</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="w">
+  </span><span class="n">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.
