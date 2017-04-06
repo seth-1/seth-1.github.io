@@ -2,6 +2,9 @@
 layout: default
 title: Exercises
 ---
+# NB!
+
+In your dataset org_id 3 stands for A. aculeatus, 14 for A. fumigatus, 21 for A.nidulans and 22 for A.niger.
 
 # Introduction
 
