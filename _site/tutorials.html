@@ -145,10 +145,6 @@ We can read in data using functions. You can download the file example.tsv <a hr
 
 <p>Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame <code class="highlighter-rouge">iris[rows,columns]</code> and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of <code class="highlighter-rouge">iris$species</code> if they are containing the term <code class="highlighter-rouge">'setosa'</code>. Remember that single <code class="highlighter-rouge">=</code> will mean an assignment operation like in <code class="highlighter-rouge">a = 1</code> and only double equation marks <code class="highlighter-rouge">==</code> will create a comparison.</p>
 
-<h2 id="merging">Merging</h2>
-
-<p>Often we need to combine</p>
-
 <h2 id="ggplot2-basics">ggplot2 basics</h2>
 
 <p>ggplot2 requires your dataframe in the first argument <code class="highlighter-rouge">ggplot(yourDataFrame)</code> afterwards you specify the type of plot like e.g. <code class="highlighter-rouge">geom_point()</code> and set the aesthetic mapping inside the latter function. Aesthetics tell ggplot the variables for each axis <code class="highlighter-rouge">x,y</code> and the groups you want to specify by <code class="highlighter-rouge">color</code>.
@@ -164,15 +160,43 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>Geoms are the types of plots you can create with ggplot2. Try typing <code class="highlighter-rouge">geom_</code> in Rstudio and see what Rstudio suggests to you.</p>
 
-<p>One useful geom is the histogram <code class="highlighter-rouge">geom_histogram</code>. This time we specify <em>fill</em> to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the <code class="highlighter-rouge">factor()</code> function to create groups of data from numeric data. Try <code class="highlighter-rouge">mtcars$gear</code> vs <code class="highlighter-rouge">factor(mtcars$gear)</code>, what is the difference?</p>
+<p>One useful geom is the barplot <code class="highlighter-rouge">geom_bar</code>. This time we specify <em>fill</em> to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the <code class="highlighter-rouge">factor()</code> function to create groups of data from numeric data. Try <code class="highlighter-rouge">mtcars$gear</code> vs <code class="highlighter-rouge">factor(mtcars$gear)</code>, what is the difference?</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># If you have this executed once on top of your script it's fine
+</span><span class="n">head</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
 
-</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyl</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">gear</span><span class="p">)),</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'dodge'</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">gear</span><span class="p">)),</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'dodge'</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'count'</span><span class="p">)</span><span class="w">
 </span></code></pre>
 </div>
 
 <p><img src="figures/carsHistoDodged.png" alt="carsHistogram" /></p>
+
+<ul>
+  <li>What does the plot tell you about your cars in the mtcars dataset?</li>
+  <li>The y axis looks a bit weird…
+    <ul>
+      <li>Add scale_y_continuous(breaks = seq(0,13,1)) to your ggplot in the same way we added the geom.</li>
+      <li>What changed?</li>
+    </ul>
+  </li>
+  <li>Compare <code class="highlighter-rouge">mtcars$gear</code> to <code class="highlighter-rouge">factor(mtcars$gear)</code>.
+    <ul>
+      <li>What is the difference?</li>
+      <li>How can R now distinguish different gears?</li>
+    </ul>
+  </li>
+  <li>Why did we convert cylinder to a factor?
+    <ul>
+      <li>Try creating the plot without the <code class="highlighter-rouge">factor()</code> function. What’s the difference?</li>
+    </ul>
+  </li>
+  <li>Try to use the argument <code class="highlighter-rouge">position = 'stack'</code>
+    <ul>
+      <li>What does the resulting plot show?</li>
+    </ul>
+  </li>
+</ul>
 
 <!-- ggplot(mtcars) + geom_histogram(aes(x = cyl, fill = factor(gear)), position = 'dodge') +scale_x_continuous(breaks = c(4,6,8), labels = c('low','mid','high')) -->
 
