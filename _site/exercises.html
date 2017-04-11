@@ -24,9 +24,17 @@
 
     <section class="main-content">
 
-      <h1 id="introduction">Introduction</h1>
+      <h1 id="nb">NB!</h1>
+
+<p>In your dataset org_id 3 stands for A. aculeatus, 14 for A. fumigatus, 21 for A.nidulans and 22 for A.niger.</p>
+
+<h1 id="introduction">Introduction</h1>
 
 <p>We will use antismash outputs of 4 Aspergillus genomes to mine them for secondary metabolic gene clusters. Using R we will develop a high throughput method which helps us to compare multiple datasets containing large amounts of data and mining for natural products of interest.</p>
+
+<h1 id="downloads">Downloads</h1>
+
+<p><a href="smurfData.tsv">smurf data</a> and <a href="ipr.tsv">interpro</a></p>
 
 <h2 id="input">Input</h2>
 
@@ -42,7 +50,11 @@
 </div>
 <ul>
   <li>Create a directory for you project and set it as Rstudio working directory</li>
-  <li>Insert the file sm_annotation.tsv into your directory and load it into R</li>
+  <li>Insert the file smurfData.tsv into your directory and load it into R
+    <ul>
+      <li>NB: The file is only space separated so you don’t need the argument <code class="highlighter-rouge">sep='/t'</code> anymore. Just delete it.</li>
+    </ul>
+  </li>
   <li>Inspect your data. What are column names? What are the variables?</li>
   <li>How many organisms are in your dataset?</li>
   <li>How many proteins are in your dataset?</li>
@@ -153,7 +165,7 @@ If the latter crashes use or looks weird use a paragraph element inside the cont
   <li>
     <p>Create a subset of your data frame only containing PKS clusters.</p>
   </li>
-  <li>Create a list of your combined dataset separated apart by Species. Hint: Which function did we use to do the same with the iris dataset?</li>
+  <li>Create a list of your combined dataset separated apart by clust_backbone. Hint: Which function did we use to do the same with the iris dataset?</li>
   <li>Use lapply to go through your list with a custom function on the variable x.
     <ul>
       <li>In this custom function use another sapply to go through your list again with a custom function on the variable y</li>
