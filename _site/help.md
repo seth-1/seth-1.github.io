@@ -14,7 +14,7 @@ geom_bar(aes(x = factor(cyl), fill = factor(gear)), position = 'dodge', stat = '
 ```
 
 > Hi,
-Is it possible to create one bar per organism in ggplot2? I am using R version 3.3.3 and ggplot2_2.2.1.9000.
+Is it possible to create one bar per gear in ggplot2? I am using R version 3.3.3 and ggplot2_2.2.1.9000.
 
 If you don't find the answer there, you can ask fellow students on the campusnet group, try google, [stackoverflow](http://stackoverflow.com/) or [Rbloggers](https://www.r-bloggers.com/). If you still cannot find an answer you might want to ask a question at stackoverflow.  Though you might not need to post a question because you find everything on stackoverflow from [R Grouping functions: sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate
 ](https://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega) to [How does the Google “Did you mean?” Algorithm work?](https://stackoverflow.com/questions/307291/how-does-the-google-did-you-mean-algorithm-work).
