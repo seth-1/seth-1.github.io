@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Bioinformatics tutorial part 2</title>
+
+		<meta name="description" content="Biosynthesis course">
+		<meta name="author" content="Sebastian Theobald">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="reveal.js-master/css/reveal.css">
+		<link rel="stylesheet" href="reveal.js-master/css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="reveal.js-master/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-master/css/print/pdf.css' : 'reveal.js-master/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h3>Bioinformatics tutorial part 2</h3>
+					<p>Sebastian Theobald</p>
+					<p>DTU Bioengineering</p>
+				<small><p> Network Engineering of Eukaryotic cell factories</p></small>
+				</section>
+
+<section>
+	<h3 align = "left" >Learning outcome</h3>
+	<p align = "left" > At the end of this session you should be able to:</p>
+<ul>
+	<li>Know how to download and further process data from e.g. antismash</li>
+	<li>Load data into R from a tsv format</li>
+	<li>Create plots of data and indicate their group (e.g. species) by ggplot</li>
+	<li>Join datasets to merge the information</li>
+</ul>
+</section>
+
+<section>
+	<h1>Why work with R?</h1>
+</section>
+
+<section data-background-image = "figures/bac.png">
+	<div class="fragment">
+
+	<h3 style="color : white; background-color: rgba(0,0,0,0.5);">
+		GUIs provide easy data access
+	</h3>
+</div>
+</section>
+
+<section data-background-image = "figures/fung.png">
+<div class="fragment">
+
+	<h3 style="color : white; background-color: rgba(0,0,0,0.5);">
+		How will we process multiple organisms in an efficient manner?
+	</h3>
+</div>
+</section>
+
+<section data-background-image = "figures/library.png">
+
+</section>
+
+<section data-background = "figures/ggplot2.gif" data-background-size = "1600px">
+
+</section>
+
+<section>
+	<h3 >Loading data</h3>
+	<pre><code data-trim data-noescape>
+setwd("your/directory") # must be the directory of the file
+smurf <- read.table("yourFile.tsv", header = TRUE)
+	</code></pre>
+</section>
+
+<section>
+	<h3>ggplot2</h3>
+	<div>
+		<pre><code data-trim data-noescape>
+ggplot(subset(smurf, sm_short!= 'none') )+
+
+geom_histogram(aes(x = factor(org_id), fill = sm_short),
+colour = 'black', stat = 'count', position = 'stack')
+		</code></pre>
+	</div>
+</section>
+
+<section>
+	<h3>ggplot 2</h3>
+	<div>
+		<img src="figures/smOverview.svg" alt="">
+	</div>
+</section>
+
+<section>
+<h3>Joining dataframes</h3>
+<pre><code data-trim data-noescape>
+# Standard usage
+merge(df1, df2, by = c("column1", "column2"))
+
+# Specify data frames (df) and columns
+comb <- merge(smurf, ipr, by = c("org_id","sm_protein_id"))
+</code></pre>
+</section>
+
+
+<section>
+	<h3>Subsetting</h3>
+	<pre><code data-trim data-noescape>
+meth <- comb[
+(comb$sm_short == 'PKS' &
+comb$ipr_desc == 'Methyltransferase type 12'),
+c('org_id', 'sm_protein_id', 'clust_backbone')]
+	</code></pre>
+</section>
+
+<section>
+<p>What if you do not know the exact term?</p>
+</section>
+
+<section>
+	<h3>Searching substrings</h3>
+	<pre><code data-trim data-noescape>
+# Select first 5 rows
+mtcars[c(1:5) , ]
+
+# Show rownames of a data frame
+rownames(mtcars)
+
+# Find all Mercedes cars
+grepl('Merc', rownames(mtcars))
+
+# Get all rows with Mercedes cars
+mtcars[grepl('Merc', rownames(mtcars)) , ]
+
+	</code></pre>
+</section>
+
+<section>
+	<h3>Adding another analysis</h3>
+	<p> We can download antismash data to make further analysis on the protein sequences of clusters.</p>
+</section>
+
+<section>
+	<h3>Extracting sequences from antismash</h3>
+	<pre><code data-trim data-noescape>
+from Bio import SeqIO
+
+for cluster in clusterFiles:
+
+# print " Processing file :" + cluster
+
+try:
+	record = SeqIO.read(cluster, 'genbank')
+except Exception:
+	print "Error reading file %s" % cluster
+
+clusterProts = [str(f.extract(record).seq.translate()) for f in record.features if f.type == "CDS"]
+
+name = cluster.split("cluster")[1].rstrip('.gbk').lstrip('0')
+
+clusters[str(name)] = clusterProts
+orgs[orgDir] = clusters
+
+</code></pre>
+</section>
+
+
+<section>
+	<h3>Extracting sequences from antismash</h3>
+	<pre><code data-trim data-noescape>
+>nidulans_42_2
+MVATPDDPRAQTIVDLFNGQGSAPAPFDVLTSALSFPTRDQEQWWRKTGPMFGQMLASSGYTLDQQYRHLTFYYNQLVPR
+LGPHPATFHSSLTVSGLPMEFSINYQQKGAHPMVRIGAEPIDSFSGTERDPFNQIPPAEMVNHFSRAGVKGFDPELYAYF
+EPKHSLTREQQARLPKEVPGGDKLKTQYAFGFDFKGDEVSLKGYSYPGLKATMAGQEVAKLVGDGVKDLKNQGKLDCTEA
+WAAVEAYMTELNGWGYHNLWAWDYVSPAKSRLKFYSFVMDVVDKTKLEELWTLNGRATSPAHQEGLRHLKELWDIIDLKN
+VGKRDLPADAPQIPEDAAPMVWNYEMTAGNPLPFGKGYFPLQGLNDAGCIQKLVKFFELMGWKDLAAKYPETIQSFYPGL
+DLSKTSHLLMTSFELWAKNTRRHVKSAEVASRKSSPVFSAPFQDHKRMRADAARPRRTGAPDYDDPSFWDTKFATGQDVG
+EWLNPGEVLLDALLSFLESEPAPTAAQPNTPKVLHLGPGISKLGSRARDAFVARGWKANGIVVGSFASIGTANADFSSEA
+VRLGQEAEKMQDPSHAMHWIQTDLRSWTDVSRLLPAGPFEAIIDKSTSDAIATSSPVTFTSAAAHTSAVCPVIKDILKNA
+KEAGEGITLTAIELLGLHLVPLTKEGSKWFVLSYSAFRFEDVPRLSSFWEIVGQQIRSGITSPLQLIVATTNEPSRIDVA
+X
+>nidulans_42_3
+MSAPQVVQSLSSASGPAGGWFRTQLATLRNRFINTEKRRQRAALIGTSFAAHRPVWITAGGGAYTTAVAVYLTMKLMRRI
+PVX
+>nidulans_43_1
+MPPSATDPTPSAATGKGTTNSQESSASSAKVKMQFPKPPVFEDKLQEREYLKGRLAAAFRIFGKNGYDEGVAGHITVRDP
+VDPTTFWVNPFGVSFSQIKASDLIQVDHSGNVIDGGPCRLLNAAAFMIHSAIHAARPDVLCAAHSHSLYGRAFCSLGREL
+DIITQDACAFYNVETPFNIFADHVVYRQFNGVVLAEEEGRNIASALGSKKAALLQNHGLLTVGKTIEETVFWFVSLEKCC
+HAQLLADAAAAGRGGATVKINDADAAFTYKTVGTPMAGWFSAKPLFDVIHQETGVSRNPVSX
+</code></pre>
+</section>
+
+<section data-background = "https://www.ebi.ac.uk/Tools/services/rest/iprscan5/result/iprscan5-S20170419-081039-0526-3357952-pg/svg#" data-background-size = "1000px">
+
+</section>
+
+<section>
+	<h3>Adding another analysis</h3>
+	<pre><code data-trim data-noescape>
+	/home/seth/tools/interproscan.sh -appl 'Pfam' -f tsv -i clusters.fasta
+</code></pre>
+
+<pre><code data-trim data-noescape>
+niger_76_7      e9d53b96667beb9d3f18e0a8a045fc50        2443    Pfam    PF16197 Ketoacyl-synthetase C-terminal extension        378     487     6.5E-11 T       19-04-2017
+niger_76_7      e9d53b96667beb9d3f18e0a8a045fc50        2443    Pfam    PF00550 Phosphopantetheine attachment site      2287    2337    8.9E-6  T       19-04-2017
+niger_43_9      4fdf082b0b0c7ff1aa93512abe38e333        526     Pfam    PF00083 Sugar (and other) transporter   22      476     1.6E-95 T       19-04-2017
+niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF08242 Methyltransferase domain        1343    1454    1.7E-17 T       19-04-2017
+niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF02801 Beta-ketoacyl synthase, C-terminal domain       252     364     2.5E-33 T       19-04-2017
+niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF00107 Zinc-binding dehydrogenase      1862    1955    5.5E-15 T       19-04-2017
+niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF08659 KR domain       2065    2242    6.8E-57 T       19-04-2017
+niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF16197 Ketoacyl-synthetase C-terminal extension        367     483     2.0E-24 T       19-04-2017
+</code></pre>
+
+</section>
+
+<section>
+	<h3>Remember to write a script and save occasionally!</h3>
+</section>
+
+<section>
+	<h3>Exercises</h3>
+	<ul>
+		<li>Load the data frame into R</li>
+		<li>Generate a barplot of secondary metabolite clusters per organism</li>
+		<li> You data frame should be this: <pre><code data-trim data-noescape>
+		unique(clusters[,c('org', 'cluster_id', 'sm_type')] )
+		</code></pre></li>
+		<li>Why do we have call the unique function on part of the dataframe?</li>
+		<li>Search for the assigned natural products using subsetting</li>
+	</ul>
+</section>
+
+<section>
+	<h3>Barplot</h3>
+	<img src="figures/smSum.svg" alt="">
+</section>
+
+<section>
+	<h3>Exercises</h3>
+	<ul>
+		<li>Load the data frame into R</li>
+		<li>Generate a barplot of secondary metabolite clusters per organism</li>
+		<li> You data frame should be this: <pre><code data-trim data-noescape>
+		unique(clusters[,c('org', 'cluster_id', 'sm_type')] )
+		</code></pre></li>
+		<li>Why do we have call the unique function on part of the dataframe?</li>
+		<li>Search for the assigned natural products using subsetting</li>
+	</ul>
+</section>
+			</div>
+
+		</div>
+					<div><img style="position: absolute; top: 20px; right: 20px; border: 0;" src="figures/dtu.svg"></div>
+
+		</div>
+	<div id="progress">
+			<p id="percent" style="position:absolute; font-family: sans-serif;color:white; z-index:3000;font-weight:bold; font-size:20px; margin-top:5px; margin-left:13px;"></p>
+			<object data="img/mushroom.svg" type="image/svg+xml" width="100" height="40" ></object>
+		</div>
+		<script src="reveal.js-master/lib/js/head.min.js"></script>
+		<script src="reveal.js-master/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'reveal.js-master/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js-master/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-master/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'reveal.js-master/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js-master/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'reveal.js-master/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
