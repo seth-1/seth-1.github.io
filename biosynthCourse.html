@@ -89,76 +89,6 @@
 
 </section>
 
-<section>
-	<h3 >Loading data</h3>
-	<pre><code data-trim data-noescape>
-setwd("your/directory") # must be the directory of the file
-smurf <- read.table("yourFile.tsv", header = TRUE)
-	</code></pre>
-</section>
-
-<section>
-	<h3>ggplot2</h3>
-	<div>
-		<pre><code data-trim data-noescape>
-ggplot(subset(smurf, sm_short!= 'none') )+
-
-geom_histogram(aes(x = factor(org_id), fill = sm_short),
-colour = 'black', stat = 'count', position = 'stack')
-		</code></pre>
-	</div>
-</section>
-
-<section>
-	<h3>ggplot 2</h3>
-	<div>
-		<img src="figures/smOverview.svg" alt="">
-	</div>
-</section>
-
-<section>
-<h3>Joining dataframes</h3>
-<pre><code data-trim data-noescape>
-# Standard usage
-merge(df1, df2, by = c("column1", "column2"))
-
-# Specify data frames (df) and columns
-comb <- merge(smurf, ipr, by = c("org_id","sm_protein_id"))
-</code></pre>
-</section>
-
-
-<section>
-	<h3>Subsetting</h3>
-	<pre><code data-trim data-noescape>
-meth <- comb[
-(comb$sm_short == 'PKS' &
-comb$ipr_desc == 'Methyltransferase type 12'),
-c('org_id', 'sm_protein_id', 'clust_backbone')]
-	</code></pre>
-</section>
-
-<section>
-<p>What if you do not know the exact term?</p>
-</section>
-
-<section>
-	<h3>Searching substrings</h3>
-	<pre><code data-trim data-noescape>
-# Select first 5 rows
-mtcars[c(1:5) , ]
-
-# Show rownames of a data frame
-rownames(mtcars)
-
-# Find all Mercedes cars
-grepl('Merc', rownames(mtcars))
-
-# Get all rows with Mercedes cars
-mtcars[grepl('Merc', rownames(mtcars)) , ]
-
-	</code></pre>
-</section>
 
 <section>
 	<h3>Adding another analysis</h3>
@@ -243,32 +173,110 @@ niger_52_15     c93c5c6fc5a448ae4780e7fa52ffa49a        2433    Pfam    PF16197 
 </section>
 
 <section>
-	<h3>Exercises</h3>
-	<ul>
-		<li>Load the data frame into R</li>
-		<li>Generate a barplot of secondary metabolite clusters per organism</li>
-		<li> You data frame should be this: <pre><code data-trim data-noescape>
-		unique(clusters[,c('org', 'cluster_id', 'sm_type')] )
-		</code></pre></li>
-		<li>Why do we have call the unique function on part of the dataframe?</li>
-		<li>Search for the assigned natural products using subsetting</li>
-	</ul>
+	<h3 >Loading data</h3>
+	<pre><code data-trim data-noescape>
+setwd("your/directory") # must be the directory of the file
+smurf <- read.table("yourFile.tsv", header = TRUE)
+	</code></pre>
+	<div class="fragment">
+
+<ul>
+	<li>Download the files under Aspergillus tutorial 2 on campusnet into the folder you want to work in</li>
+	<li> Import your data like in the example above</li>
+	<li>Tip: You can check the location of the current working directory using getwd()</li>
+</ul>
+</div>
+
 </section>
 
 <section>
-	<h3>Barplot</h3>
+<h3>Joining dataframes</h3>
+<pre><code data-trim data-noescape>
+# Standard usage
+merge(df1, df2, by = c("column1", "column2"))
+
+# Specify data frames (df) and columns
+comb <- merge(smurf, ipr, by = c("org_id","sm_protein_id"))
+</code></pre>
+<div class="fragment">
+<ul>
+	<li>Inspect the data frames in Rstudio by using the head() function. On which columns can you perform a join?</li>
+	<li>Join the clusters and pfam datasets and assign them to a variable called smashMerged</li>
+</ul>
+</div>
+
+</section>
+
+<section>
+	<h3>ggplot 2</h3>
+	<div>
+		<img src="figures/smOverview.svg" alt="">
+	</div>
+</section>
+
+<section>
+	<h3>ggplot2</h3>
+	<div>
+		<pre><code data-trim data-noescape>
+ggplot(subset(smurf, sm_short!= 'none') )+
+
+geom_histogram(aes(x = factor(org_id), fill = sm_short),
+colour = 'black', stat = 'count', position = 'stack')
+		</code></pre>
+	</div>
+
+<div class="fragment">
+	<li>Generate a barplot of secondary metabolite clusters per organism</li>
+	<li>You need to change the variables according to your smashMerged data frame!</li>
+	<li> You data input should be this: <pre><code data-trim data-noescape>
+	unique(smashMerged[,c('org', 'cluster_id', 'sm_type')] )
+	</code></pre></li>
+	<li>Why do we have call the unique function on part of the dataframe?</li>
+</div>
+
+</section>
+
+
+<section>
+	<h3>result</h3>
 	<img src="figures/smSum.svg" alt="">
 </section>
 
 <section>
-	<h3>Exercises</h3>
+	<h3>Subsetting</h3>
+	<pre><code data-trim data-noescape>
+meth <- comb[
+(comb$sm_short == 'PKS' &
+comb$ipr_desc == 'Methyltransferase type 12'),
+c('org_id', 'sm_protein_id', 'clust_backbone')]
+	</code></pre>
+</section>
+
+<section>
+<p>What if you do not know the exact term?</p>
+</section>
+
+<section>
+	<h3>Searching substrings</h3>
+	<pre><code data-trim data-noescape>
+# Select first 5 rows
+mtcars[c(1:5) , ]
+
+# Show rownames of a data frame
+rownames(mtcars)
+
+# Find all Mercedes cars
+grepl('Merc', rownames(mtcars))
+
+# Get all rows with Mercedes cars
+mtcars[grepl('Merc', rownames(mtcars)) , ]
+
+	</code></pre>
+</section>
+
+<section>
+	<h3>Exercise</h3>
 	<ul>
-		<li>Load the data frame into R</li>
-		<li>Generate a barplot of secondary metabolite clusters per organism</li>
-		<li> You data frame should be this: <pre><code data-trim data-noescape>
-		unique(clusters[,c('org', 'cluster_id', 'sm_type')] )
-		</code></pre></li>
-		<li>Why do we have call the unique function on part of the dataframe?</li>
 		<li>Search for the assigned natural products using subsetting</li>
 	</ul>
 </section>
