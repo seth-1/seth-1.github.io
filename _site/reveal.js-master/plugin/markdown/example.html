@@ -1,129 +1,118 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-us">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+  <meta charset="UTF-8">
+  <title>Biosynthesis of natural products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/cayman.css">
+</head>
 
-		<title>reveal.js - Markdown Demo</title>
+  <body>
+    <section class="page-header">
+  <h1 class="project-name">Biosynthesis of natural products</h1>
+  <h2 class="project-tagline">Tutorials for the fungal project</h2>
+  <a href="gettingStarted.html" class="btn">Getting started</a>
+  <a href="tutorials.html" class="btn">Tutorials</a>
+  <a href="exercises.html" class="btn">Exercises</a>
+  <a href="biosynthCourse.html" class="btn">Lecture</a>
+  <a href="supplementary.html" class="btn">Supplementary</a>
+  <a href="help.html" class="btn">How to get help</a>
+</section>
 
-		<link rel="stylesheet" href="../../css/reveal.css">
-		<link rel="stylesheet" href="../../css/theme/white.css" id="theme">
 
-        <link rel="stylesheet" href="../../lib/css/zenburn.css">
-	</head>
+    <section class="main-content">
 
-	<body>
+      <h1 id="markdown-demo">Markdown Demo</h1>
 
-		<div class="reveal">
+<h2 id="external-11">External 1.1</h2>
 
-			<div class="slides">
+<p>Content 1.1</p>
 
-                <!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines -->
-                <section data-markdown="example.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+<p>Note: This will only appear in the speaker notes window.</p>
 
-                <!-- Slides are separated by three dashes (quick 'n dirty regular expression) -->
-                <section data-markdown data-separator="---">
-                    <script type="text/template">
-                        ## Demo 1
-                        Slide 1
-                        ---
-                        ## Demo 1
-                        Slide 2
-                        ---
-                        ## Demo 1
-                        Slide 3
-                    </script>
-                </section>
+<h2 id="external-12">External 1.2</h2>
 
-                <!-- Slides are separated by newline + three dashes + newline, vertical slides identical but two dashes -->
-                <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
-                    <script type="text/template">
-                        ## Demo 2
-                        Slide 1.1
+<p>Content 1.2</p>
 
-                        --
+<h2 id="external-2">External 2</h2>
 
-                        ## Demo 2
-                        Slide 1.2
+<p>Content 2.1</p>
 
-                        ---
+<h2 id="external-31">External 3.1</h2>
 
-                        ## Demo 2
-                        Slide 2
-                    </script>
-                </section>
+<p>Content 3.1</p>
 
-                <!-- No "extra" slides, since there are no separators defined (so they'll become horizontal rulers) -->
-                <section data-markdown>
-                    <script type="text/template">
-                        A
+<h2 id="external-32">External 3.2</h2>
 
-                        ---
+<p>Content 3.2</p>
 
-                        B
 
-                        ---
+<!-- <nav class="nav-primary" role="navigation" >
+    <ul>
+        
+        <li>
+        	<a  href="/compoundMining.html">compounds</a>
+        </li>
+        
+        <li>
+        	<a  href="/exercises.html">Exercises</a>
+        </li>
+        
+        <li>
+        	<a  href="/gettingStarted.html">Getting started with R</a>
+        </li>
+        
+        <li>
+        	<a  href="/">{}</a>
+        </li>
+        
+        <li>
+        	<a  href="/supplementary.html">Supplementary info</a>
+        </li>
+        
+        <li>
+        	<a  href="/tutorials.html">Tutorials</a>
+        </li>
+        
+        <li>
+        	<a  href="/assets/css/style.css"></a>
+        </li>
+        
+        <li>
+        	<a  href="/help.html">How to get help</a>
+        </li>
+        
+        <li>
+        	<a class="active" href="/reveal.js-master/plugin/markdown/example.html">Markdown Demo</a>
+        </li>
+        
+        <li>
+        	<a  href="/reveal.js-master/test/simple.html">Slide 1.1</a>
+        </li>
+        
+        <li>
+        	<a  href="/reveal.js-master/css/theme/">Dependencies</a>
+        </li>
+        
+        <li>
+        	<a  href="/page2/">{}</a>
+        </li>
+        
+    </ul>
+</nav>
+ -->
 
-                        C
-                    </script>
-                </section>
+      <footer class="site-footer">
+  <!-- <span class="site-footer-owner"><a href="http://localhost:4000">Biosynthesis of natural products</a> is maintained by <a href="seth-1.github.io">Sebastian Theobald</a>.</span> -->
+  <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+</footer>
 
-                <!-- Slide attributes -->
-                <section data-markdown>
-                    <script type="text/template">
-                        <!-- .slide: data-background="#000000" -->
-                        ## Slide attributes
-                    </script>
-                </section>
 
-                <!-- Element attributes -->
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Element attributes
-                        - Item 1 <!-- .element: class="fragment" data-fragment-index="2" -->
-                        - Item 2 <!-- .element: class="fragment" data-fragment-index="1" -->
-                    </script>
-                </section>
+    </section>
 
-                <!-- Code -->
-                <section data-markdown>
-                    <script type="text/template">
-                        ```php
-                        public function foo()
-                        {
-                            $foo = array(
-                                'bar' => 'bar'
-                            )
-                        }
-                        ```
-                    </script>
-                </section>
-
-            </div>
-		</div>
-
-		<script src="../../lib/js/head.min.js"></script>
-		<script src="../../js/reveal.js"></script>
-
-		<script>
-
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: '../../lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: 'markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '../notes/notes.js' }
-				]
-			});
-
-		</script>
-
-	</body>
+  </body>
 </html>

@@ -44,7 +44,7 @@
 
 <p>R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. <code class="highlighter-rouge">c()</code> in the example below is a function which <em>concatenates</em> the numeric values <em>1,2,3,4,5</em> to a numeric vector.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>a &lt;- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a &lt;- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
 a &lt;- seq(5)       # does the same as the line above using the seq function
 sum(a)            # calculates the sum of a
 length(a)
@@ -61,8 +61,7 @@ finalUn &lt;- union(tmp1, d)
 
 # more complicated solution for the latter union functions:
 Reduce(union, list(b,c,d))
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>What do the <code class="highlighter-rouge">length()</code> and <code class="highlighter-rouge">class()</code> functions tell you?</li>
@@ -74,15 +73,14 @@ Reduce(union, list(b,c,d))
 <h2 id="reading-data-into-r">Reading data into R</h2>
 
 <p>Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
-We can read in data using functions. You can download the file example.tsv <a href="example.tsv">here</a></p>
+We can read in data using functions. You can download the file example.tsv <a href="/example.tsv">here</a></p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file
-</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header
-</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)
-</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)</span><span class="w">
 
-</span></code></pre>
-</div>
+
+</span></code></pre></div></div>
 
 <ul>
   <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).</li>
@@ -102,9 +100,9 @@ We can read in data using functions. You can download the file example.tsv <a hr
 
 <p>To get an overview of your data you can use the <code class="highlighter-rouge">head()</code> and <code class="highlighter-rouge">str()</code> function or simply print the object to console by typing the variables name and executing the line. Alternatively you can inspect your data in Rstudio using the <strong>environment panel</strong>.</p>
 
-<p><img src="figures/viewDatasets.gif" alt="viewing data" /></p>
+<p><img src="/figures/viewDatasets.gif" alt="viewing data" /></p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
   </span><span class="n">Sepal.Length</span><span class="w"> </span><span class="n">Sepal.Width</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="n">Species</span><span class="w">
 </span><span class="m">1</span><span class="w">          </span><span class="m">5.1</span><span class="w">         </span><span class="m">3.5</span><span class="w">          </span><span class="m">1.4</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
 </span><span class="m">2</span><span class="w">          </span><span class="m">4.9</span><span class="w">         </span><span class="m">3.0</span><span class="w">          </span><span class="m">1.4</span><span class="w">         </span><span class="m">0.2</span><span class="w">  </span><span class="n">setosa</span><span class="w">
@@ -120,8 +118,7 @@ We can read in data using functions. You can download the file example.tsv <a hr
  </span><span class="o">$</span><span class="w"> </span><span class="n">Petal.Length</span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.3</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.7</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">1.4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="n">...</span><span class="w">
  </span><span class="o">$</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.4</span><span class="w"> </span><span class="m">0.3</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.1</span><span class="w"> </span><span class="n">...</span><span class="w">
  </span><span class="o">$</span><span class="w"> </span><span class="n">Species</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="n">Factor</span><span class="w"> </span><span class="n">w</span><span class="o">/</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="s2">"setosa"</span><span class="p">,</span><span class="s2">"versicolor"</span><span class="p">,</span><span class="n">..</span><span class="o">:</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">...</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>Quick recap of plant biology:
 <!-- ![iris flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg) --></p>
@@ -134,21 +131,19 @@ We can read in data using functions. You can download the file example.tsv <a hr
 
 <p>Try the following lines and describe what you get as a result:</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">iris</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iris</span><span class="w">
 </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="w">
 </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="w">
-</span><span class="n">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">Species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">)</span><span class="w"> </span><span class="c1"># same as above
+</span><span class="n">subset</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">Species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">)</span><span class="w"> </span><span class="c1"># same as above</span><span class="w">
 </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'setosa'</span><span class="p">,</span><span class="w"> </span><span class="s1">'versicolor'</span><span class="p">)</span><span class="w">
 </span><span class="n">iris</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),]</span><span class="w">
 </span><span class="n">iris</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)]</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>We combine now two terms to subset our data frame:</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">iris</span><span class="p">[</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">,]</span><span class="w">
-</span></code></pre>
-</div>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iris</span><span class="p">[</span><span class="n">iris</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'setosa'</span><span class="p">,]</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Theres a lot of commands in that one line of code. On the outside we tell R to access the rows of the data frame <code class="highlighter-rouge">iris[rows,columns]</code> and on the inside we create a boolean vector (TRUE, FALSE statement) checking the whole column of <code class="highlighter-rouge">iris$species</code> if they are containing the term <code class="highlighter-rouge">'setosa'</code>. Remember that single <code class="highlighter-rouge">=</code> will mean an assignment operation like in <code class="highlighter-rouge">a = 1</code> and only double equation marks <code class="highlighter-rouge">==</code> will create a comparison.</p>
 
@@ -157,11 +152,10 @@ We can read in data using functions. You can download the file example.tsv <a hr
 <p>ggplot2 requires your dataframe in the first argument <code class="highlighter-rouge">ggplot(yourDataFrame)</code> afterwards you specify the type of plot like e.g. <code class="highlighter-rouge">geom_point()</code> and set the aesthetic mapping inside the latter function. Aesthetics tell ggplot the variables for each axis <code class="highlighter-rouge">x,y</code> and the groups you want to specify by <code class="highlighter-rouge">color</code>.
 In the follwing example we use the standard R iris dataset and plot length of petals against length of sepals.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
 </span><span class="n">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="o">+</span><span class="w"> </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sepal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Petal.Length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Species</span><span class="p">))</span><span class="w">
-</span></code></pre>
-</div>
-<p><img src="figures/ggplotExample.png" alt="ggplotBasics" /></p>
+</span></code></pre></div></div>
+<p><img src="/figures/ggplotExample.png" alt="ggplotBasics" /></p>
 
 <h3 id="using-more-geoms">Using more geoms</h3>
 
@@ -169,15 +163,14 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>One useful geom is the barplot <code class="highlighter-rouge">geom_bar</code>. This time we specify <em>fill</em> to color the inside of the plot objects. Above we had to use color because it affects the stroke of the plot data. In the below example we need to use the <code class="highlighter-rouge">factor()</code> function to create groups of data from numeric data. Try <code class="highlighter-rouge">mtcars$gear</code> vs <code class="highlighter-rouge">factor(mtcars$gear)</code>, what is the difference?</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># If you have this executed once on top of your script it's fine
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># If you have this executed once on top of your script it's fine</span><span class="w">
 </span><span class="n">head</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w">
 
 </span><span class="n">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
 </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">gear</span><span class="p">)),</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'dodge'</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'count'</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
-<p><img src="figures/carsBarsDodged.png" alt="carsBarplot" /></p>
+<p><img src="/figures/carsBarsDodged.png" alt="carsBarplot" /></p>
 
 <ul>
   <li>What does the plot tell you about your cars in the mtcars dataset?</li>
@@ -213,9 +206,8 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>The aggregate function is very helpful for summary statistics. In case you want to know, e.g. what the average petal length per species is. Aggregates syntax follows <code class="highlighter-rouge">aggregate(varOfInterest ~ groupVar)</code>.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">aggregate</span><span class="p">(</span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">mean</span><span class="p">)</span><span class="w">
-</span></code></pre>
-</div>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">aggregate</span><span class="p">(</span><span class="n">Petal.Length</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iris</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">mean</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 
 <ul>
   <li>What is the mean Petal.Length for each species?</li>
@@ -226,7 +218,7 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>Often you want to merge datasets. E.g. if you have annotation data from different sources. Let’s merge the iris dataset with a (completely made up) dataset of poisonus iris species.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
 </span><span class="n">iris</span><span class="w">
 
 </span><span class="n">poison</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="w">
@@ -236,12 +228,11 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 </span><span class="n">pplants</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">poison</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Species"</span><span class="p">)</span><span class="w">
 
-</span><span class="n">pplants</span><span class="w"> </span><span class="c1"># What happened to the dataset?
-</span><span class="w">
+</span><span class="n">pplants</span><span class="w"> </span><span class="c1"># What happened to the dataset?</span><span class="w">
+
 </span><span class="n">aggregate</span><span class="p">(</span><span class="w"> </span><span class="n">Petal.Length</span><span class="o">~</span><span class="n">poisonous</span><span class="p">,</span><span class="w"> </span><span class="n">pplants</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w">
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <ul>
   <li>What does the last line tell us about the anatomy of poisonous plants?</li>
@@ -251,15 +242,14 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>Split let’s you split a data frame into a list. This is helpful for many downstream applications and readability (more on this later).</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">irisL</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w"> </span><span class="c1"># creating a list of the iris dataset
-</span><span class="w">
-</span><span class="n">iris</span><span class="w"> </span><span class="c1"># print and see
-</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">irisL</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">split</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w"> </span><span class="c1"># creating a list of the iris dataset</span><span class="w">
+
+</span><span class="n">iris</span><span class="w"> </span><span class="c1"># print and see</span><span class="w">
+
 </span><span class="n">irisL</span><span class="p">[</span><span class="s1">'versicolor'</span><span class="p">]</span><span class="w">
 </span><span class="n">irisL</span><span class="p">[[</span><span class="s1">'versicolor'</span><span class="p">]]</span><span class="w">
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 <ul>
   <li>What is the difference between the last two statements? Tip: Use the <code class="highlighter-rouge">class()</code> function on the sublist of <em>versicolor</em> species but also print it to spot the difference</li>
 </ul>
@@ -268,20 +258,19 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>The apply family of functions working similar to for-loops, meaning:</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w"> </span><span class="c1"># will give you the number of rows for the entire data frame
-</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w"> </span><span class="c1"># will give you the number of rows for the entire data frame</span><span class="w">
+
 </span><span class="k">for</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">irisL</span><span class="p">){</span><span class="w">
   </span><span class="n">print</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.
-</span><span class="w">
+</span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">)</span><span class="w"> </span><span class="c1"># Is basically the same as above.</span><span class="w">
+
 </span><span class="n">lapply</span><span class="p">(</span><span class="n">irisL</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="w">
   </span><span class="n">x</span><span class="w">
   </span><span class="p">})</span><span class="w">
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>The function <code class="highlighter-rouge">lapply()</code> will retain the list structure while <code class="highlighter-rouge">sapply()</code> is simplifying the result to a vector.</p>
 
@@ -289,13 +278,13 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 
 <p>Heatmaps are excellent to show relationships of e.g. organisms in large datasets. Given a similarity matrix we can create a plot which provides us with additional clustered information. We will need to introduce the matrix as another data object.</p>
 
-<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span><span class="w">
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span><span class="w">
 
 </span><span class="n">speciesNames</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span><span class="w">
 
 </span><span class="n">exampleMat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">85</span><span class="p">,</span><span class="m">100</span><span class="p">),</span><span class="w">
        </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
-       </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">speciesNames</span><span class="p">,</span><span class="w"> </span><span class="n">speciesNames</span><span class="p">))</span><span class="w"> </span><span class="c1"># dimnames needs a list for row- and columnnames
+       </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">speciesNames</span><span class="p">,</span><span class="w"> </span><span class="n">speciesNames</span><span class="p">))</span><span class="w"> </span><span class="c1"># dimnames needs a list for row- and columnnames</span><span class="w">
 </span><span class="n">exampleMat</span><span class="w">
 
 </span><span class="n">heatmap.2</span><span class="p">(</span><span class="n">exampleMat</span><span class="p">,</span><span class="w">
@@ -303,8 +292,7 @@ In the follwing example we use the standard R iris dataset and plot length of pe
           </span><span class="n">margins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">10</span><span class="p">)</span><span class="w">
           </span><span class="p">)</span><span class="w">
 
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <ul>
   <li>What does the heatmap tell you about the releationship of the iris species?</li>
@@ -344,6 +332,26 @@ In the follwing example we use the standard R iris dataset and plot length of pe
         
         <li>
         	<a class="active" href="/tutorials.html">Tutorials</a>
+        </li>
+        
+        <li>
+        	<a  href="/assets/css/style.css"></a>
+        </li>
+        
+        <li>
+        	<a  href="/help.html">How to get help</a>
+        </li>
+        
+        <li>
+        	<a  href="/reveal.js-master/plugin/markdown/example.html">Markdown Demo</a>
+        </li>
+        
+        <li>
+        	<a  href="/reveal.js-master/test/simple.html">Slide 1.1</a>
+        </li>
+        
+        <li>
+        	<a  href="/reveal.js-master/css/theme/">Dependencies</a>
         </li>
         
         <li>
