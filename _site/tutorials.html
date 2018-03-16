@@ -28,7 +28,7 @@
 
       <h1 id="outcome">Outcome</h1>
 
-<p>The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by <strong>typing</strong> the content of the code blocks into your script.</p>
+<p>The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by <strong>typing</strong> the content of the code blocks into your script and executing it.</p>
 
 <h4 id="goals">Goals</h4>
 
@@ -37,8 +37,9 @@
 <ul>
   <li>Create and distinguish data types in R</li>
   <li>Know how to create vectors</li>
-  <li>Use functions in R
-*</li>
+  <li>Use functions in R</li>
+  <li>Use the ggplot package</li>
+  <li>Create heatmaps using gplots</li>
 </ul>
 
 <h1 id="why-working-with-r">Why working with R?</h1>
@@ -56,6 +57,18 @@
 <p>In this tutorial you will find code examples (snippets) and exercises. Type the snippets into your R script and execute them. Inspect what the functions do. Afterwards, try the exercises beneath the snippets.</p>
 
 <h2 id="r-basics">R basics</h2>
+
+<h4 id="assignment-operators">Assignment operators</h4>
+
+<p>In R we use variables which keep the values we assign to them. It’s like an equation where you say <code class="highlighter-rouge">x = 2</code>. In R we mostly use the <code class="highlighter-rouge">&lt;-</code> operator instead of a <code class="highlighter-rouge">=</code> to make assignments.</p>
+
+<p>Type the following lines into your script and execute it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a &lt;- 20
+b &lt;- 10
+
+a+b     
+</code></pre></div></div>
 
 <h4 id="vectors">Vectors</h4>
 

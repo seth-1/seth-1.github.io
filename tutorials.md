@@ -5,7 +5,7 @@ title: Tutorials
 
 # Outcome
 
-The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by **typing** the content of the code blocks into your script.
+The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by **typing** the content of the code blocks into your script and executing it.
 
 #### Goals
 
@@ -14,7 +14,8 @@ At the end of this tutorial you should be able to
 * Create and distinguish data types in R
 * Know how to create vectors   
 * Use functions in R
-*
+* Use the ggplot package
+* Create heatmaps using gplots
 
 # Why working with R?
 
@@ -33,6 +34,19 @@ In this tutorial you will find code examples (snippets) and exercises. Type the 
 
 
 ## R basics
+
+#### Assignment operators
+
+In R we use variables which keep the values we assign to them. It's like an equation where you say ```x = 2```. In R we mostly use the ```<-``` operator instead of a ```=``` to make assignments.
+
+Type the following lines into your script and execute it:
+
+```
+a <- 20
+b <- 10
+
+a+b     
+```
 
 #### Vectors
 
