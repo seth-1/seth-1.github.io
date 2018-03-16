@@ -3,6 +3,19 @@ layout: default
 title: Tutorials
 ---
 
+# Outcome
+
+The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by **typing** the content of the code blocks into your script.
+
+#### Goals
+
+At the end of this tutorial you should be able to
+
+* Create and distinguish data types in R
+* Know how to create vectors   
+* Use functions in R
+*
+
 # Why working with R?
 
 Antismash is already providing many functions and analysis tools in it's web interface. However, projects often involve newly sequenced organisms that are not available in public databases yet and only owned by you. Therefore, you have to perform certain analyses on your own, including unpublished and non analysed data.
@@ -21,6 +34,8 @@ In this tutorial you will find code examples (snippets) and exercises. Type the 
 
 ## R basics
 
+#### Vectors
+
 R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. ```c()``` in the example below is a function which *concatenates* the numeric values *1,2,3,4,5* to a numeric vector.
 
 ```
@@ -29,13 +44,24 @@ a <- seq(5)       # does the same as the line above using the seq function
 sum(a)            # calculates the sum of a
 length(a)
 class(a)
+```
 
+#### Slicing/subsetting
 
-letters          
+```
+letters          # letters is a predefined vector
 class(letters)
 b <- letters[1:20] # subsetting for first to 20th character
 c <- letters[10:20]
 d <- letters[15:25]
+```
+
+<!-- * Exercise: Create **one** numeric vector which spans 10 to 20 and continues from 30 to 60 using slicing -->
+
+#### Functions
+
+Functions are executing an operation on vectors ```function(vector)```. Union merges the two vectors ```b``` and ```c``` we created earler
+```
 tmp1 <- union(b,c)
 finalUn <- union(tmp1, d)
 
@@ -46,25 +72,10 @@ Reduce(union, list(b,c,d))
 * What do the ```length()``` and ```class()``` functions tell you?
 * How does the ```union()``` function differ from the ```c()``` function?
 * How can you find the shared characters between b and c? Tip: Try the help function on ```union()```
-* Try out the function on objects b and c you found in the last
+* Try out the function on objects ```b``` and ```c``` you found in the last
 
 
-## Reading data into R
 
-Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
-We can read in data using functions. You can download the file example.tsv [here](example.tsv)
-
-```r
-dat <- read.table("example.tsv", sep = '\t', header = TRUE) # Reading example file
-head(dat)                                    # Showing the header
-str(dat)                                     # Overview of observations (rows) and variables (columns)
-
-
-```
-
-* Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).
-
-In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.
 
 ## Data frames and built in datasets
 
@@ -77,6 +88,8 @@ R's most common data structure is the data frame which is a table containing dif
 To get an overview of your data you can use the ```head()``` and ```str()``` function or simply print the object to console by typing the variables name and executing the line. Alternatively you can inspect your data in Rstudio using the **environment panel**.
 
 ![viewing data](figures/viewDatasets.gif)
+
+The factor data type is like a character vector but they define a finite number of categories, e.g. plant species.
 
 ```r
 > head(iris)
@@ -96,11 +109,6 @@ To get an overview of your data you can use the ```head()``` and ```str()``` fun
  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
-
-Quick recap of plant biology:
-<!-- ![iris flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg) -->
-
-![orchid anatomy](http://plant-life.org/Orchidaceae/orchid3.gif)
 
 
 ## Subsetting
@@ -271,6 +279,22 @@ heatmap.2(exampleMat,
 
 > Well done, you finished the tutorial! Now try out your R skills in the exercises.
 
+## Reading data into R
+
+Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
+We can read in data using functions. You can download the file example.tsv [here](example.tsv)
+
+```r
+dat <- read.table("example.tsv", sep = '\t', header = TRUE) # Reading example file
+head(dat)                                    # Showing the header
+str(dat)                                     # Overview of observations (rows) and variables (columns)
+
+
+```
+
+* Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).
+
+In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.
 
 # More info on R
 

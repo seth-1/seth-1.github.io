@@ -18,7 +18,7 @@
   <a href="gettingStarted.html" class="btn">Getting started</a>
   <a href="tutorials.html" class="btn">Tutorials</a>
   <a href="exercises.html" class="btn">Exercises</a>
-  <a href="biosynthCourse.html" class="btn">Lecture</a>
+  <a href="biosynthCourseNew.html" class="btn">Lecture</a>
   <a href="supplementary.html" class="btn">Supplementary</a>
   <a href="help.html" class="btn">How to get help</a>
 </section>
@@ -26,7 +26,22 @@
 
     <section class="main-content">
 
-      <h1 id="why-working-with-r">Why working with R?</h1>
+      <h1 id="outcome">Outcome</h1>
+
+<p>The aim of this tutorial is to show you the basics of the R programming language. Try out the examples in this tutorial by <strong>typing</strong> the content of the code blocks into your script.</p>
+
+<h4 id="goals">Goals</h4>
+
+<p>At the end of this tutorial you should be able to</p>
+
+<ul>
+  <li>Create and distinguish data types in R</li>
+  <li>Know how to create vectors</li>
+  <li>Use functions in R
+*</li>
+</ul>
+
+<h1 id="why-working-with-r">Why working with R?</h1>
 
 <p>Antismash is already providing many functions and analysis tools in it’s web interface. However, projects often involve newly sequenced organisms that are not available in public databases yet and only owned by you. Therefore, you have to perform certain analyses on your own, including unpublished and non analysed data.</p>
 
@@ -42,6 +57,8 @@
 
 <h2 id="r-basics">R basics</h2>
 
+<h4 id="vectors">Vectors</h4>
+
 <p>R works with vectors of different kinds which is similar to other programming languages. However, the syntax is a bit different. <code class="highlighter-rouge">c()</code> in the example below is a function which <em>concatenates</em> the numeric values <em>1,2,3,4,5</em> to a numeric vector.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a &lt;- c(1,2,3,4,5) # assigns a numeric vector from 1 to 5 to the variable a
@@ -49,14 +66,23 @@ a &lt;- seq(5)       # does the same as the line above using the seq function
 sum(a)            # calculates the sum of a
 length(a)
 class(a)
+</code></pre></div></div>
 
+<h4 id="slicingsubsetting">Slicing/subsetting</h4>
 
-letters          
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>letters          # letters is a predefined vector
 class(letters)
 b &lt;- letters[1:20] # subsetting for first to 20th character
 c &lt;- letters[10:20]
 d &lt;- letters[15:25]
-tmp1 &lt;- union(b,c)
+</code></pre></div></div>
+
+<!-- * Exercise: Create **one** numeric vector which spans 10 to 20 and continues from 30 to 60 using slicing -->
+
+<h4 id="functions">Functions</h4>
+
+<p>Functions are executing an operation on vectors <code class="highlighter-rouge">function(vector)</code>. Union merges the two vectors <code class="highlighter-rouge">b</code> and <code class="highlighter-rouge">c</code> we created earler</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tmp1 &lt;- union(b,c)
 finalUn &lt;- union(tmp1, d)
 
 # more complicated solution for the latter union functions:
@@ -67,26 +93,8 @@ Reduce(union, list(b,c,d))
   <li>What do the <code class="highlighter-rouge">length()</code> and <code class="highlighter-rouge">class()</code> functions tell you?</li>
   <li>How does the <code class="highlighter-rouge">union()</code> function differ from the <code class="highlighter-rouge">c()</code> function?</li>
   <li>How can you find the shared characters between b and c? Tip: Try the help function on <code class="highlighter-rouge">union()</code></li>
-  <li>Try out the function on objects b and c you found in the last</li>
+  <li>Try out the function on objects <code class="highlighter-rouge">b</code> and <code class="highlighter-rouge">c</code> you found in the last</li>
 </ul>
-
-<h2 id="reading-data-into-r">Reading data into R</h2>
-
-<p>Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
-We can read in data using functions. You can download the file example.tsv <a href="/example.tsv">here</a></p>
-
-<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file</span><span class="w">
-</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header</span><span class="w">
-</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)</span><span class="w">
-
-
-</span></code></pre></div></div>
-
-<ul>
-  <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).</li>
-</ul>
-
-<p>In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.</p>
 
 <h2 id="data-frames-and-built-in-datasets">Data frames and built in datasets</h2>
 
@@ -101,6 +109,8 @@ We can read in data using functions. You can download the file example.tsv <a hr
 <p>To get an overview of your data you can use the <code class="highlighter-rouge">head()</code> and <code class="highlighter-rouge">str()</code> function or simply print the object to console by typing the variables name and executing the line. Alternatively you can inspect your data in Rstudio using the <strong>environment panel</strong>.</p>
 
 <p><img src="/figures/viewDatasets.gif" alt="viewing data" /></p>
+
+<p>The factor data type is like a character vector but they define a finite number of categories, e.g. plant species.</p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span><span class="w"> </span><span class="n">head</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span><span class="w">
   </span><span class="n">Sepal.Length</span><span class="w"> </span><span class="n">Sepal.Width</span><span class="w"> </span><span class="n">Petal.Length</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="n">Species</span><span class="w">
@@ -119,11 +129,6 @@ We can read in data using functions. You can download the file example.tsv <a hr
  </span><span class="o">$</span><span class="w"> </span><span class="n">Petal.Width</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">num</span><span class="w">  </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.4</span><span class="w"> </span><span class="m">0.3</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="m">0.1</span><span class="w"> </span><span class="n">...</span><span class="w">
  </span><span class="o">$</span><span class="w"> </span><span class="n">Species</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="n">Factor</span><span class="w"> </span><span class="n">w</span><span class="o">/</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="s2">"setosa"</span><span class="p">,</span><span class="s2">"versicolor"</span><span class="p">,</span><span class="n">..</span><span class="o">:</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">...</span><span class="w">
 </span></code></pre></div></div>
-
-<p>Quick recap of plant biology:
-<!-- ![iris flower anatomy](https://upload.wikimedia.org/wikipedia/commons/4/49/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg) --></p>
-
-<p><img src="http://plant-life.org/Orchidaceae/orchid3.gif" alt="orchid anatomy" /></p>
 
 <h2 id="subsetting">Subsetting</h2>
 
@@ -301,6 +306,24 @@ In the follwing example we use the standard R iris dataset and plot length of pe
 <blockquote>
   <p>Well done, you finished the tutorial! Now try out your R skills in the exercises.</p>
 </blockquote>
+
+<h2 id="reading-data-into-r">Reading data into R</h2>
+
+<p>Often you download datasets from different sources. Either a database, or you want to inspect the output of a program like antismash or interpro.
+We can read in data using functions. You can download the file example.tsv <a href="/example.tsv">here</a></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"example.tsv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'\t'</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="c1"># Reading example file</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                    </span><span class="c1"># Showing the header</span><span class="w">
+</span><span class="n">str</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w">                                     </span><span class="c1"># Overview of observations (rows) and variables (columns)</span><span class="w">
+
+
+</span></code></pre></div></div>
+
+<ul>
+  <li>Why do we need the sep and header argument? Try the help function of read.table to find the answer (Tip: tsv stands for tab separated values).</li>
+</ul>
+
+<p>In the following tutorial we will use built in datasets for reasons of simplicity. In the exercises you will work on the secondary metabolite annotations.</p>
 
 <h1 id="more-info-on-r">More info on R</h1>
 
