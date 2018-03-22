@@ -40,18 +40,18 @@ Data visualizations can give us a much better overview than the data frame or ta
 
 In this exercise, we are interested in the content of secondary metabolic proteins across all our fungal species. We want to determine which one has the most valuable repertoire of natural products and how they compare in different classes of secondary metabolites. An expansion of a certain class of compounds for example, could have been an important driver of the sections evolution.
 
-* Create an overview of the 'backbone' secondary metabolism proteins ( like: PKS, NRPS, PKS-Likes, NRPS-Likes, DMAT, TC, HYRBID, i.e. everything that is not 'none') for all organisms.
+* Create an overview of the secondary metabolite gene cluster types ( like: PKS, NRPS, PKS-Likes, NRPS-Likes etc. i.e.) for all organisms.
   * Use ggplot for visualization
-  * Use different colors for the different classes of proteins
+  * Use different colors for the different classes of clusters
   * Which geom not only visualizes but also summarizes the data? Tip: We covered some geoms in the tutorial. Which one matches the criterium?
-
 
 * Save the plot and write down your conclusion
   * What does the plot tell you about secondary metabolism in the 4 species
 
 Now we summarized the data using ggplot geoms.
-* As a coding exercise, summarize the total amount of proteins per organism. Tip: You need to separate the data and summarize it afterwards.
-  * What is the total amount of backbone proteins?
+* Summarize the total amount of proteins per organism.
+* Total amount of proteins per cluster per type for Aspergillus nidulans
+  * What is the total amount of pks clusters?
 
 ## Combining the sets
 
@@ -59,7 +59,8 @@ Often we need to combine datasets from different sources, e.g. to include an add
 
 Create a combination of your secondary metabolite annotations and interpro annotations to find out which secondary metabolite proteins carry which domains.
 
-* Inspect your secondary metabolite annotations and interpro annotations (includes Pfam). What are common columns between the two sets?
+* Inspect your secondary metabolite annotations and interpro annotations. What are common columns between the two sets?
+* If there are no common columns, can you combine columns to create a shared identifier?
 * What do interpro annotations tell you about a protein?
 
 >Info:
@@ -73,13 +74,6 @@ The resulting dataset will help us to characterize the proteins by their Pfam do
 
 In comparative genomics and genome mining we often want to compare proteins by their annotations. One way to get a general view on the secondary metabolites produced by your organisms is to characterize a certain class of metabolites by their domains. In the following exercise we will focus on PKSs and their domains to characterize the products of our organisms.
 
-### Recap
-
-You already know about the basic build of PKSs, i.e. 3 domains with initiating, elongating and terminating function.
-
-Based on your background knowledge of PKSs:
-* What is the minimum set of domains needed to synthesize a polyketide?
-* What are optional domains which further **diversify** the polyketide?
 
 <!-- <div class = "spec-hi" >
 <p>You already know about the basic build of PKS. It needs 3 domains with initiating, elongating and terminating function.  </p>
@@ -95,9 +89,9 @@ If the latter crashes use or looks weird use a paragraph element inside the cont
 Mining for natural products, we are interested in enzymes with certain functions. E.g. you know your compound is a methylated polyketide and you want to find the genecluster responsible for it's production.
 
 * Inspect the dataframe. Which column contains information about domains? Can you identify domains belonging to PKSs?
-* Can you recognize domains you learned about which further modify a *simple* PKS product?
-* Using subsetting, find all PKSs that contain a Methyltransferase. Hint: Save the result to a new variable
-* Provide a dataframe showing the sum of all PKS containing Methyltransferases for each organism.
+* Can you recognize tailoring functions you learned about which further modify a *simple* PKS product?
+* Using ```grepl```, find all PKS clusters that contain a Methyltransferase. Hint: Save the result to a new variable
+* Provide a dataframe showing the sum of all PKS clusters containing Methyltransferases for each organism.
 * Repeat the last two steps for another domains with special function inside PKSs.
 
 ## Case 2 Gene cluster similarity
@@ -105,10 +99,6 @@ Mining for natural products, we are interested in enzymes with certain functions
 Final exercise! Comparing gene clusters is a method to characterize the diversity of secondary metabolites. We will use our combined dataset, especially Pfam domains to create a comparison of gene clusters across all organisms.
 
 * For ease of use, create a new identifier column in your dataset using the organism id and the cluster backbone id.
-```
-comb$cid <- paste(comb$org_id, comb$clust_backbone, sep = '_')
-```
-* Inspect your data frame! What did the above line of code change? You might need to change data frame or column names
 * Create a subset of your data frame only containing PKS clusters.
 
 * Create a list of your combined dataset separated apart by clust_backbone. Hint: Which function did we use to do the same with the iris dataset?
