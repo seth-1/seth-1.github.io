@@ -23,8 +23,6 @@ Antismash is already providing many functions and analysis tools in it's web int
 
 Learning R will help you in handling the increasing  amount of data. Projects working on 100 to 300 genomes simultaneously are common and certain projects combine analyses of [1000 genomes](http://genome.jgi.doe.gov/programs/fungi/1000fungalgenomes.jsf).
 
-![all genomes](https://cdn.meme.am/cache/instances/folder204/65722204.jpg)
-
 More data will become available and it will become increasingly important to work on these in a high throughput as well as reproducible manner.
 
 
